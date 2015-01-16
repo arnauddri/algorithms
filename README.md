@@ -6,7 +6,6 @@ Classic algorithms and data structures implemented in Go
 
 #### Data Structures
 
-
 * Graph
 
 #### Graph algorithms
@@ -15,11 +14,8 @@ Classic algorithms and data structures implemented in Go
 * breadthFirstSearch
 
 ##### Shortest path
-* bfsShortestPath
 
-##### Minimum spanning tree
-* prim
-* kruskal
+* bfsShortestPath
 
 #### Math algorithms
 
