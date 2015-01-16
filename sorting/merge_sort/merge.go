@@ -1,28 +1,17 @@
-// Package main provides ...
-package main
-
-import (
-	"fmt"
-)
+package merge
 
 var arr = []int{20, 43, 52, -1, 43, 29, 34}
 var s = make([]int, len(arr)/2+1)
 
-func main() {
-	fmt.Println("Unsorted: ", arr)
-	merge_sort(arr)
-	fmt.Println("Sorted: ", arr)
-}
-
-func merge_sort(arr []int) {
+func sort(arr []int) {
 	if len(arr) < 2 {
 		return
 	}
 
 	mid := len(arr) / 2
 
-	merge_sort(arr[:mid])
-	merge_sort(arr[mid:])
+	sort(arr[:mid])
+	sort(arr[mid:])
 
 	if arr[mid-1] <= arr[mid] {
 		return
