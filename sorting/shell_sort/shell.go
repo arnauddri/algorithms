@@ -1,19 +1,6 @@
-// Package main provides ...
-package main
+package shell
 
-import (
-	"fmt"
-)
-
-var arr = []int{20, 43, 52, -1, 43, 29, 34}
-
-func main() {
-	fmt.Println("Unsorted: ", arr)
-	shell_sort(arr)
-	fmt.Println("Sorted: ", arr)
-}
-
-func shell_sort(arr []int) {
+func sort(arr []int) {
 	increment := len(arr) / 2
 	for increment > 0 {
 		for i := increment; i < len(arr); i++ {
