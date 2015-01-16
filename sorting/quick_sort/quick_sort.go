@@ -1,18 +1,6 @@
-package main
+package quick
 
-import (
-	"fmt"
-)
-
-var arr = []int{20, 43, 52, -1, 43, 29, 34}
-
-func main() {
-	fmt.Println("Unsorted: ", arr)
-	quick_sort(arr)
-	fmt.Println("Sorted: ", quick_sort(arr))
-}
-
-func quick_sort(arr []int) []int {
+func sort(arr []int) []int {
 	var recurse func(left int, right int)
 	var partition func(left int, right int, pivot int) int
 
