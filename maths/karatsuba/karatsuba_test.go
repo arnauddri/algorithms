@@ -8,8 +8,11 @@ import (
 )
 
 func TestMultipy(t *testing.T) {
-	a := big.NewInt(10)
-	b := big.NewInt(10)
-	//fmt.Println(multiply(a, b))
-	fmt.Println(k_multiply(a, b))
+	a := big.NewInt(1234)
+	b := big.NewInt(1234)
+
+	if k_multiply(a, b).Cmp(mul(a, b)) != 0 {
+		fmt.Println(k_multiply(a, b), mul(a, b))
+		t.Fatal("Wrong result")
+	}
 }

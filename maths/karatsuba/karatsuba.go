@@ -2,52 +2,60 @@
 package karatsuba
 
 import (
-	"fmt"
+	"math"
 	"math/big"
 )
 
 func k_multiply(a, b *big.Int) *big.Int {
-	fmt.Println(a)
-	fmt.Println(a.BitLen())
+	if a.Cmp(big.NewInt(10)) < 1 || b.Cmp(big.NewInt(10)) < 1 {
+		return mul(a, b)
+	}
+
 	m := _pivot(a, b)
-	splitA := _split(a, uint(m))
-	leftA, rightA := splitA[0], splitA[1]
 
-	splitB := _split(b, uint(m))
-	leftB, rightB := splitB[0], splitB[1]
+	leftA, rightA := _split(a, uint(m))
+	leftB, rightB := _split(b, uint(m))
 
-	fmt.Println(leftB, rightB, leftA, rightA)
-	return a
+	z0 := k_multiply(leftA, leftB)
+	z1 := k_multiply(rightA, rightB)
+	z2 := k_multiply(add(leftA, rightA), add(leftB, rightB))
+	z2 = sub(z2, add(z0, z1))
+
+	temp0 := mul(z0, big.NewInt(int64(math.Pow(10.0, 2.0*float64(m)))))
+	temp1 := mul(z2, big.NewInt(int64(math.Pow(10.0, float64(m)))))
+	temp2 := add(temp0, temp1)
+
+	return add(temp2, z1)
 }
 
-func _split(a *big.Int, m uint) []*big.Int {
-	big_a := big.NewInt(a.Int64())
-	left := big.NewInt(int64(a.Uint64())).Rsh(big_a, m)
+func _split(a *big.Int, m uint) (left, right *big.Int) {
+	denominator := big.NewInt(int64(math.Pow(10.0, float64(m))))
 
-	tempRight := big.NewInt(left.Int64())
-	tempRight = tempRight.Rsh(tempRight, m)
+	left = big.NewInt(0).Div(a, denominator)
+	right = sub(a, big.NewInt(0).Mul(left, denominator))
 
-	_right := big.NewInt(a.Int64())
-	right := _right.Sub(_right, tempRight)
-
-	return []*big.Int{left, right}
+	return
 }
 
 func _pivot(a, b *big.Int) int {
-	bitLen_a := a.BitLen()
-	bitLen_b := b.BitLen()
+	len_a := len(a.String())
+	len_b := len(b.String())
 
-	if bitLen_a < bitLen_b {
-		return bitLen_a >> 1
+	if len_a > len_b {
+		return len_a/2 + len_a%2
 	} else {
-		return bitLen_b >> 1
+		return len_b/2 + len_b%2
 	}
 }
 
-func multiply(a, b *big.Int) *big.Int {
-	a1 := big.NewInt(a.Int64())
-	b1 := big.NewInt(b.Int64())
+func add(a, b *big.Int) *big.Int {
+	return big.NewInt(0).Add(a, b)
+}
 
-	c := big.NewInt(0)
-	return c.Mul(a1, b1)
+func mul(a, b *big.Int) *big.Int {
+	return big.NewInt(0).Mul(a, b)
+}
+
+func sub(a, b *big.Int) *big.Int {
+	return big.NewInt(0).Sub(a, b)
 }
