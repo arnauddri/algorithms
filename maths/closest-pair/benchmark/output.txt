@@ -1,0 +1,10 @@
+PASS
+BenchmarkBruteForce-4	50000000	       675 ns/op
+BenchmarkFib100-4	 1000000	     26184 ns/op
+BenchmarkFib1000-4	   50000	    307240 ns/op
+BenchmarkFib10000-4	   10000	   2733102 ns/op
+BenchmarkFib100000-4	    1000	  18230526 ns/op
+BenchmarkFib1000000-4	     100	 181307940 ns/op
+BenchmarkFib10000000-4	      10	1788067409 ns/op
+BenchmarkFib100000000-4	       1	116081814317 ns/op
+BenchmarkFib1000000000-4	
