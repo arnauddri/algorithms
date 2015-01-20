@@ -25,7 +25,9 @@ Classic algorithms and data structures implemented in Go
 * [Fisher-Yates Shuffle](https://github.com/arnauddri/algorithms/tree/master/maths/fisher-yates) [(wiki)](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
 * [Karatsuba's Multiplication](https://github.com/arnauddri/algorithms/tree/master/maths/karatsuba) [(wiki)](http://en.wikipedia.org/wiki/Karatsuba_algorithm)
 * [Newton's Square Root](https://github.com/arnauddri/algorithms/tree/master/maths/newton-sqrt) [(wiki)](http://en.wikipedia.org/wiki/Newton%27s_method)
+* [Permutations Count](https://github.com/arnauddri/algorithms/tree/master/maths/permutations-count)
 * [Strassen's matrix multiplication](https://github.com/arnauddri/algorithms/tree/master/maths/matrix) [(wiki)](http://en.wikipedia.org/wiki/Strassen_algorithm)
+* [Randomized Selection](https://github.com/arnauddri/algorithms/tree/master/maths/rselect)
 
 #### Search algorithms
 
