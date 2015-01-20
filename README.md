@@ -6,12 +6,12 @@ Classic algorithms and data structures implemented in Go
 
 #### Data Structures
 
-* Graph
+* Graph [(wiki)](http://en.wikipedia.org/wiki/Graph_%28abstract_data_type)
 
 #### Graph algorithms
 
-* depthFirstSearch
-* breadthFirstSearch
+* [Depth First Search]() [(wiki)](http://en.wikipedia.org/wiki/Depth-first_search)
+* [Breadth First Search]() [(wiki)](http://en.wikipedia.org/wiki/Breadth-first_search)
 
 ##### Shortest path
 
@@ -31,9 +31,9 @@ Classic algorithms and data structures implemented in Go
 
 #### Sorting algorithms
 
-* [bubbleSort](https://github.com/arnauddri/algorithms/tree/master/sorting/bubble_sort) [(wiki)](http://en.wikipedia.org/wiki/Bubble_sort)
-* [quicksort](https://github.com/arnauddri/algorithms/tree/master/sorting/quick_sort) [(wiki)](http://en.wikipedia.org/wiki/Quicksort)
-* [mergeSort](https://github.com/arnauddri/algorithms/tree/master/sorting/merge_sort) [(wiki)](http://en.wikipedia.org/wiki/Merge_sort)
-* [insertionSort](https://github.com/arnauddri/algorithms/tree/master/sorting/insertion_sort) [(wiki)](http://en.wikipedia.org/wiki/Insertion_sort)
-* [shellSort](https://github.com/arnauddri/algorithms/tree/master/sorting/shell_sort) [(wiki)](http://en.wikipedia.org/wiki/Shellsort)
-* [selectionSort](https://github.com/arnauddri/algorithms/tree/master/sorting/selection_sort) [(wiki)](http://en.wikipedia.org/wiki/Selection_sort)
+* [Bubble Sort](https://github.com/arnauddri/algorithms/tree/master/sorting/bubble_sort) [(wiki)](http://en.wikipedia.org/wiki/Bubble_sort)
+* [Quick Sort](https://github.com/arnauddri/algorithms/tree/master/sorting/quick_sort) [(wiki)](http://en.wikipedia.org/wiki/Quicksort)
+* [Merge Sort](https://github.com/arnauddri/algorithms/tree/master/sorting/merge_sort) [(wiki)](http://en.wikipedia.org/wiki/Merge_sort)
+* [Insertion Sort](https://github.com/arnauddri/algorithms/tree/master/sorting/insertion_sort) [(wiki)](http://en.wikipedia.org/wiki/Insertion_sort)
+* [Shell Sort](https://github.com/arnauddri/algorithms/tree/master/sorting/shell_sort) [(wiki)](http://en.wikipedia.org/wiki/Shellsort)
+* [Selection Sort](https://github.com/arnauddri/algorithms/tree/master/sorting/selection_sort) [(wiki)](http://en.wikipedia.org/wiki/Selection_sort)
