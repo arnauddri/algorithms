@@ -27,7 +27,7 @@ Classic algorithms and data structures implemented in Go
 * [Newton's Square Root](https://github.com/arnauddri/algorithms/tree/master/maths/newton-sqrt) [(wiki)](http://en.wikipedia.org/wiki/Newton%27s_method)
 * [Permutations Count](https://github.com/arnauddri/algorithms/tree/master/maths/permutations-count)
 * [Strassen's matrix multiplication](https://github.com/arnauddri/algorithms/tree/master/maths/matrix) [(wiki)](http://en.wikipedia.org/wiki/Strassen_algorithm)
-* [Randomized Selection](https://github.com/arnauddri/algorithms/tree/master/maths/rselect)
+* [Randomized Selection](https://github.com/arnauddri/algorithms/tree/master/maths/RSelect)
 
 #### Search algorithms
 
