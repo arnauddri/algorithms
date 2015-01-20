@@ -35,10 +35,9 @@ Classic algorithms and data structures implemented in Go
 
 #### Sorting algorithms
 
-* bubbleSort
-* quicksort
-* selectionSort
-* mergeSort
-* insertionSort
-* shellSort
-* selectionSort
+* [bubbleSort](https://github.com/arnauddri/algorithms/tree/master/sorting/bubble_sort) [(wiki)](http://en.wikipedia.org/wiki/Bubble_sort)
+* [quicksort](https://github.com/arnauddri/algorithms/tree/master/sorting/quick_sort) [(wiki)](http://en.wikipedia.org/wiki/Quicksort)
+* [mergeSort](https://github.com/arnauddri/algorithms/tree/master/sorting/merge_sort) [(wiki)](http://en.wikipedia.org/wiki/Merge_sort)
+* [insertionSort](https://github.com/arnauddri/algorithms/tree/master/sorting/insertion_sort) [(wiki)](http://en.wikipedia.org/wiki/Insertion_sort)
+* [shellSort](https://github.com/arnauddri/algorithms/tree/master/sorting/shell_sort) [(wiki)](http://en.wikipedia.org/wiki/Shellsort)
+* [selectionSort](https://github.com/arnauddri/algorithms/tree/master/sorting/selection_sort) [(wiki)](http://en.wikipedia.org/wiki/Selection_sort)
