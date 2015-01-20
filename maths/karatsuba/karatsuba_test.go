@@ -7,8 +7,17 @@ import (
 	"testing"
 )
 
-func TestMultipy(t *testing.T) {
-	a := big.NewInt(1234)
+func TestMultipyOdd(t *testing.T) {
+	a := big.NewInt(1234567890123456789)
+
+	if k_multiply(a, a).Cmp(mul(a, a)) != 0 {
+		fmt.Println(k_multiply(a, a), mul(a, a))
+		t.Fatal("Wrong result")
+	}
+}
+
+func TestMultipyEven(t *testing.T) {
+	a := big.NewInt(123456789012345678)
 
 	if k_multiply(a, a).Cmp(mul(a, a)) != 0 {
 		fmt.Println(k_multiply(a, a), mul(a, a))

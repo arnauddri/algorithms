@@ -42,9 +42,9 @@ func _pivot(a, b *big.Int) int {
 	len_b := len(b.String())
 
 	if len_a > len_b {
-		return len_a/2 + len_a%2
+		return len_a / 2
 	} else {
-		return len_b/2 + len_b%2
+		return len_b / 2
 	}
 }
 
