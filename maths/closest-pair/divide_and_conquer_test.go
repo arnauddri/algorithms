@@ -22,3 +22,16 @@ func TestDivideAndConquer(t *testing.T) {
 		t.Error()
 	}
 }
+
+func BenchmarkDivideAndConquer(b *testing.B) {
+	Points := make([]point, 10)
+	for i := 0; i < 10; i++ {
+		a := makePoint(float64(i), float64(i*i))
+
+		Points[i] = *a
+	}
+
+	for i := 0; i < b.N; i++ {
+		divideAndConquer(Points)
+	}
+}
