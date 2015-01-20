@@ -29,16 +29,12 @@ Classic algorithms and data structures implemented in Go
 * [Strassen's matrix multiplication](https://github.com/arnauddri/algorithms/tree/master/maths/matrix) [(wiki)](http://en.wikipedia.org/wiki/Strassen_algorithm)
 * [Randomized Selection](https://github.com/arnauddri/algorithms/tree/master/maths/RSelect)
 
-#### Search algorithms
-
- * RSelect
-
 #### Sorting algorithms
 
-* bubbleSort
-* quicksort
-* selectionSort
-* mergeSort
-* insertionSort
-* shellSort
-* selectionSort
+* Bubble Sort
+* Quick Sort
+* Selection Sort
+* Merge Sort
+* Insertion Sort
+* Shell Sort
+* Selection Sort
