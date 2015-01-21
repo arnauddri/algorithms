@@ -12,3 +12,12 @@ func TestRecurse(t *testing.T) {
 		t.Error()
 	}
 }
+
+func TestIterative(t *testing.T) {
+	if iter(14, 7) != 7 ||
+		iter(4, 2) != 2 ||
+		iter(31, 2) != 1 ||
+		iter(33, 11) != 11 {
+		t.Error()
+	}
+}
