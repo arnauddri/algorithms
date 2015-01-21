@@ -1,34 +1,47 @@
-package matrix
+package strassen
 
 import (
+	"github.com/arnauddri/algorithms/data-structures/matrix"
 	"testing"
 )
 
 func TestStrassen(t *testing.T) {
-	A := makeMatrix([]float64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, 4, 4)
-	B := makeMatrix([]float64{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}, 4, 4)
+	A := matrix.MakeMatrix([]float64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, 4, 4)
+	B := matrix.MakeMatrix([]float64{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}, 4, 4)
 
-	C := strassen(A, B)
-	D := multiplyMatrix(A, B)
-	if !FloatArrayEquals(C.elements, D.elements) {
+	C := Multiply(A, B)
+	D := matrix.Multiply(A, B)
+	if !FloatArrayEquals(C.Elements, D.Elements) {
 		t.Error()
 	}
 
-	A = makeMatrix([]float64{1, 1, 1, 1}, 2, 2)
-	B = makeMatrix([]float64{1, 1, 1, 1}, 2, 2)
+	A = matrix.MakeMatrix([]float64{1, 1, 1, 1}, 2, 2)
+	B = matrix.MakeMatrix([]float64{1, 1, 1, 1}, 2, 2)
 
-	C = strassen(A, B)
-	D = multiplyMatrix(A, B)
-	if !FloatArrayEquals(C.elements, D.elements) {
+	C = Multiply(A, B)
+	D = matrix.Multiply(A, B)
+	if !FloatArrayEquals(C.Elements, D.Elements) {
 		t.Error()
 	}
 
-	A = makeMatrix([]float64{1, 1, 1, 1, 1, 1, 1, 1, 1}, 3, 3)
-	B = makeMatrix([]float64{1, 1, 1, 1, 1, 1, 1, 1, 1}, 3, 3)
+	A = matrix.MakeMatrix([]float64{1, 1, 1, 1, 1, 1, 1, 1, 1}, 3, 3)
+	B = matrix.MakeMatrix([]float64{1, 1, 1, 1, 1, 1, 1, 1, 1}, 3, 3)
 
-	C = strassen(A, B)
-	D = multiplyMatrix(A, B)
-	if !FloatArrayEquals(C.elements, D.elements) {
+	C = Multiply(A, B)
+	D = matrix.Multiply(A, B)
+	if !FloatArrayEquals(C.Elements, D.Elements) {
 		t.Error()
 	}
+}
+
+func FloatArrayEquals(a []float64, b []float64) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i, v := range a {
+		if v != b[i] {
+			return false
+		}
+	}
+	return true
 }
