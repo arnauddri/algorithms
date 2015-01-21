@@ -1,10 +1,12 @@
-package graph
+package dfs
 
-import ()
+import (
+	"github.com/arnauddri/algorithms/data-structures/graph"
+)
 
-func dfs(g *Graph, v VertexId) map[VertexId]bool {
-	stack := []VertexId{v}
-	visited := make(map[VertexId]bool)
+func dfs(g *graph.Graph, v graph.VertexId) map[graph.VertexId]bool {
+	stack := []graph.VertexId{v}
+	visited := make(map[graph.VertexId]bool)
 
 	for len(stack) > 0 {
 		l := len(stack) - 1

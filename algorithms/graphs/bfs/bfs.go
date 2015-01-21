@@ -1,14 +1,16 @@
-package graph
+package bfs
 
-import ()
+import (
+	"github.com/arnauddri/algorithms/data-structures/graph"
+)
 
-func bfs(g *Graph, start VertexId) map[VertexId]bool {
-	queue := []VertexId{start}
-	visited := make(map[VertexId]bool)
-	var next []VertexId
+func bfs(g *graph.Graph, start graph.VertexId) map[graph.VertexId]bool {
+	queue := []graph.VertexId{start}
+	visited := make(map[graph.VertexId]bool)
+	var next []graph.VertexId
 
 	for len(queue) > 0 {
-		next = []VertexId{}
+		next = []graph.VertexId{}
 		for _, vertex := range queue {
 			visited[vertex] = true
 			neighbours := g.GetNeighbours(vertex).VerticesIter()
