@@ -7,6 +7,7 @@ Classic algorithms and data structures implemented in Go
 #### Data Structures
 
 * Graph [(wiki)](http://en.wikipedia.org/wiki/Graph_%28abstract_data_type)
+* [Matrix](https://github.com/arnauddri/algorithms/tree/master/data-structures/matrix) [(wiki)](http://en.wikipedia.org/wiki/Matrix_(mathematics)
 
 #### Graph algorithms
 
@@ -29,7 +30,7 @@ Classic algorithms and data structures implemented in Go
 * [Karatsuba's Multiplication](https://github.com/arnauddri/algorithms/tree/master/maths/karatsuba) [(wiki)](http://en.wikipedia.org/wiki/Karatsuba_algorithm)
 * [Newton's Square Root](https://github.com/arnauddri/algorithms/tree/master/maths/newton-sqrt) [(wiki)](http://en.wikipedia.org/wiki/Newton%27s_method)
 * [Permutations Count](https://github.com/arnauddri/algorithms/tree/master/maths/permutations-count)
-* [Strassen's matrix multiplication](https://github.com/arnauddri/algorithms/tree/master/maths/matrix) [(wiki)](http://en.wikipedia.org/wiki/Strassen_algorithm)
+* [Strassen's matrix multiplication](https://github.com/arnauddri/algorithms/tree/master/maths/strassen) [(wiki)](http://en.wikipedia.org/wiki/Strassen_algorithm)
 * [Randomized Selection](https://github.com/arnauddri/algorithms/tree/master/maths/RSelect)
 
 #### Sorting algorithms
