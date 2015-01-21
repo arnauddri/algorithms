@@ -21,3 +21,15 @@ func TestIterative(t *testing.T) {
 		t.Error()
 	}
 }
+
+func BenchmarkRecurse(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		recurse(131313131, 12343545)
+	}
+}
+
+func BenchmarkIter(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		iter(131313131, 12343545)
+	}
+}
