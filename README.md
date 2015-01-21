@@ -7,7 +7,7 @@ Classic algorithms and data structures implemented in Go
 #### Data Structures
 
 * Graph [(wiki)](http://en.wikipedia.org/wiki/Graph_%28abstract_data_type)
-* [Matrix](https://github.com/arnauddri/algorithms/tree/master/data-structures/matrix) [(wiki)](http://en.wikipedia.org/wiki/Matrix_(mathematics)
+* [Matrix](https://github.com/arnauddri/algorithms/tree/master/data-structures/matrix) [(wiki)](http://en.wikipedia.org/wiki/Matrix_(mathematics))
 
 #### Graph algorithms
 
