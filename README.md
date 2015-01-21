@@ -25,6 +25,7 @@ Classic algorithms and data structures implemented in Go
 * [Fibonacci](https://github.com/arnauddri/algorithms/tree/master/maths/fibonacci) [(wiki)](http://en.wikipedia.org/wiki/Fibonacci_number)
 * [Fisher-Yates Shuffle](https://github.com/arnauddri/algorithms/tree/master/maths/fisher-yates) [(wiki)](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
 * [Erastothenes Sieve](https://github.com/arnauddri/algorithms/tree/master/maths/eratosthenes-sieve) [(wiki)](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
+* [Extented GCD algorithm](https://github.com/arnauddri/algorithms/tree/master/maths/euclide) [(wiki)](http://en.wikipedia.org/wiki/Extended_Euclidean_algorithm)
 * [Karatsuba's Multiplication](https://github.com/arnauddri/algorithms/tree/master/maths/karatsuba) [(wiki)](http://en.wikipedia.org/wiki/Karatsuba_algorithm)
 * [Newton's Square Root](https://github.com/arnauddri/algorithms/tree/master/maths/newton-sqrt) [(wiki)](http://en.wikipedia.org/wiki/Newton%27s_method)
 * [Permutations Count](https://github.com/arnauddri/algorithms/tree/master/maths/permutations-count)

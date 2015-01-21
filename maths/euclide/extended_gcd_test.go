@@ -28,3 +28,9 @@ func TestGetCoeff(t *testing.T) {
 		t.Error()
 	}
 }
+
+func BenchmarkGetCoeff(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		getCoeff(131313131, 121212121)
+	}
+}
