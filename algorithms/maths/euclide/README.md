@@ -2,8 +2,9 @@
 
 This module implements the extended greatest common divider algorithm.
 
-Pre: two integers a and b
-Post: a tuple (x, y) where a*x + b*y = gcd(a, b) (bezout coefficients)
+*Pre:* two integers a and b
+
+*Post:* a tuple ```(x, y)``` where ```a*x + b*y = gcd(a, b)``` (bezout coefficients)
 
 Pseudo Code: [http://en.wikipedia.org/wiki/Extended_Euclidean_algorithm](http://en.wikipedia.org/wiki/Extended_Euclidean_algorithm)
 
