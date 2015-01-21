@@ -47,8 +47,14 @@ func FloatArrayEquals(a []float64, b []float64) bool {
 }
 
 func BenchmarkStrassen(b *testing.B) {
-	A := matrix.MakeMatrix([]float64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, 4, 4)
-	B := matrix.MakeMatrix([]float64{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}, 4, 4)
+	a := make([]float64, 100000000, 100000000)
+	c := make([]float64, 100000000, 100000000)
+	for i := 0; i < 100000000; i++ {
+		a[i] = float64(i)
+		c[i] = float64(100000000 - i)
+	}
+	A := matrix.MakeMatrix(a, 10000, 10000)
+	B := matrix.MakeMatrix(c, 10000, 10000)
 
 	for i := 0; i < b.N; i++ {
 		Multiply(A, B)
@@ -56,8 +62,15 @@ func BenchmarkStrassen(b *testing.B) {
 }
 
 func BenchmarkMultiply(b *testing.B) {
-	A := matrix.MakeMatrix([]float64{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, 4, 4)
-	B := matrix.MakeMatrix([]float64{2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}, 4, 4)
+	a := make([]float64, 100000000, 100000000)
+	c := make([]float64, 100000000, 100000000)
+
+	for i := 0; i < 100000000; i++ {
+		a[i] = float64(i)
+		c[i] = float64(100000000 - i)
+	}
+	A := matrix.MakeMatrix(a, 10000, 10000)
+	B := matrix.MakeMatrix(c, 10000, 10000)
 
 	for i := 0; i < b.N; i++ {
 		matrix.Multiply(A, B)
