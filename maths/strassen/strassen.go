@@ -1,6 +1,7 @@
 package matrix
 
 import (
+	"github.com/arnauddri/algorithms/data-structures/matrix"
 	"math"
 )
 
