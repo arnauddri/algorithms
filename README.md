@@ -20,7 +20,7 @@ Classic algorithms and data structures implemented in Go
 
 #### Maths algorithms
 
-* [Binary GCD algorithm](https://github.com/arnauddri/algorithms/tree/master/alogrithms/maths/stein) [(wiki)](https://en.wikipedia.org/wiki/Binary_GCD_algorithm)
+* [Binary GCD algorithm](https://github.com/arnauddri/algorithms/tree/master/algorithms/maths/stein) [(wiki)](https://en.wikipedia.org/wiki/Binary_GCD_algorithm)
 * [Closest pairs](https://github.com/arnauddri/algorithms/tree/master/algorithms/maths/closest-pair) [(wiki)](http://en.wikipedia.org/wiki/Closest_pair_of_points_problem)
 * [FastPower](https://github.com/arnauddri/algorithms/tree/master/algorithms/maths/fast-power) [(wiki)](http://en.wikipedia.org/wiki/Exponentiation_by_squaring)
 * [Fibonacci](https://github.com/arnauddri/algorithms/tree/master/algorithms/maths/fibonacci) [(wiki)](http://en.wikipedia.org/wiki/Fibonacci_number)
