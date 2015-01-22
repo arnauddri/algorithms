@@ -13,12 +13,17 @@ Classic algorithms and data structures implemented in Go
 
 #### Graph algorithms
 
+**Searching:**
 * [Depth First Search](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/dfs) [(wiki)](http://en.wikipedia.org/wiki/Depth-first_search)
 * [Breadth First Search](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/bfs) [(wiki)](http://en.wikipedia.org/wiki/Breadth-first_search)
 
-##### Shortest path
-
+**Shortest path:**
 * [bfsShortestPath](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/bfs_shortest_path)
+
+**Sorting:**
+* [Topological Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/topological-sort) [(wiki)](http://en.wikipedia.org/wiki/Topological_sorting)
+
+
 
 #### Maths algorithms
 
