@@ -18,7 +18,7 @@ Classic algorithms and data structures implemented in Go
 * [Breadth First Search](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/bfs) [(wiki)](http://en.wikipedia.org/wiki/Breadth-first_search)
 
 **Shortest path:**
-* [bfsShortestPath](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/bfs_shortest_path)
+* [bfsShortestPath](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/bfs-shortest-path)
 
 **Sorting:**
 * [Topological Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/topological-sort) [(wiki)](http://en.wikipedia.org/wiki/Topological_sorting)
@@ -42,9 +42,9 @@ Classic algorithms and data structures implemented in Go
 
 #### Sorting algorithms
 
-* [Bubble Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/bubble_sort) [(wiki)](http://en.wikipedia.org/wiki/Bubble_sort)
-* [Quick Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/quick_sort) [(wiki)](http://en.wikipedia.org/wiki/Quicksort)
-* [Merge Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/merge_sort) [(wiki)](http://en.wikipedia.org/wiki/Merge_sort)
-* [Insertion Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/insertion_sort) [(wiki)](http://en.wikipedia.org/wiki/Insertion_sort)
-* [Shell Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/shell_sort) [(wiki)](http://en.wikipedia.org/wiki/Shellsort)
-* [Selection Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/selection_sort) [(wiki)](http://en.wikipedia.org/wiki/Selection_sort)
+* [Bubble Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/bubble-sort) [(wiki)](http://en.wikipedia.org/wiki/Bubble_sort)
+* [Quick Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/quick-sort) [(wiki)](http://en.wikipedia.org/wiki/Quicksort)
+* [Merge Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/merge-sort) [(wiki)](http://en.wikipedia.org/wiki/Merge_sort)
+* [Insertion Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/insertion-sort) [(wiki)](http://en.wikipedia.org/wiki/Insertion_sort)
+* [Shell Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/shell-sort) [(wiki)](http://en.wikipedia.org/wiki/Shellsort)
+* [Selection Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/selection-sort) [(wiki)](http://en.wikipedia.org/wiki/Selection_sort)
