@@ -6,7 +6,7 @@ import (
 )
 
 func TestBfsShortestPath(t *testing.T) {
-	h := graph.NewUndirected()
+	h := graph.NewDirected()
 
 	for i := 0; i < 10; i++ {
 		v := graph.VertexId(i)
