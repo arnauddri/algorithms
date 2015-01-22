@@ -124,4 +124,24 @@ func TestDirectedGraph(t *testing.T) {
 		fmt.Println(r.edges)
 		t.Error()
 	}
+
+	successors := r.GetSuccessors(1)
+	for successor := range successors {
+		if successor != 3 &&
+			successor != 5 &&
+			successor != 7 &&
+			successor != 9 {
+			t.Error()
+		}
+	}
+
+	predecessors := g.GetPredecessors(1)
+	for predecessor := range predecessors {
+		if predecessor != 3 &&
+			predecessor != 5 &&
+			predecessor != 7 &&
+			predecessor != 9 {
+			t.Error()
+		}
+	}
 }
