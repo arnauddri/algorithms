@@ -17,14 +17,14 @@ func TestBfsShortestPath(t *testing.T) {
 		h.AddEdge(graph.VertexId(i), graph.VertexId(i+1))
 	}
 
-	distance := bfsShortestPath(h, graph.VertexId(0))
+	distance := ShortestPath(h, graph.VertexId(0))
 
 	for i := 0; i < len(distance); i++ {
 		if distance[graph.VertexId(i)] != i {
 			t.Error()
 		}
 
-		if bfsDist(h, graph.VertexId(0), graph.VertexId(i)) != i {
+		if GetDist(h, graph.VertexId(0), graph.VertexId(i)) != i {
 			t.Error()
 		}
 	}

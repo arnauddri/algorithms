@@ -1,35 +1,32 @@
 package bfs
 
 import (
+	"github.com/arnauddri/algorithms/algorithms/graphs/bfs"
 	"github.com/arnauddri/algorithms/data-structures/graph"
 )
 
-func bfsShortestPath(g *graph.Graph, start graph.VertexId) (dist map[graph.VertexId]int) {
-	queue := []graph.VertexId{start}
-	visited := make(map[graph.VertexId]bool)
+func ShortestPath(g *graph.Graph, start graph.VertexId) (dist map[graph.VertexId]int) {
 	dist = make(map[graph.VertexId]int)
-	var next []graph.VertexId
+	visited := make(map[graph.VertexId]bool)
 
-	for len(queue) > 0 {
-		next = []graph.VertexId{}
-		for _, vertex := range queue {
-			visited[vertex] = true
-			neighbours := g.GetNeighbours(vertex).VerticesIter()
+	getDist := func(v graph.VertexId) {
+		neighbours := g.GetNeighbours(v).VerticesIter()
+		visited[v] = true
 
-			for neighbour := range neighbours {
+		for neighbour := range neighbours {
 
-				ok, _ := visited[neighbour]
-				if !ok {
-					dist[neighbour] = dist[vertex] + 1
-					next = append(next, neighbour)
-				}
+			ok, _ := visited[neighbour]
+			if !ok {
+				dist[neighbour] = dist[v] + 1
 			}
 		}
-		queue = next
 	}
+
+	bfs.Bfs(g, start, getDist)
+
 	return
 }
 
-func bfsDist(g *graph.Graph, from graph.VertexId, to graph.VertexId) int {
-	return bfsShortestPath(g, from)[to]
+func GetDist(g *graph.Graph, from graph.VertexId, to graph.VertexId) int {
+	return ShortestPath(g, from)[to]
 }
