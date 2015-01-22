@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestGraph(t *testing.T) {
+func TestUndirectedGraph(t *testing.T) {
 	g := NewUndirected()
 
 	for i := 0; i < 10; i++ {
@@ -98,6 +98,30 @@ func TestGraph(t *testing.T) {
 
 	g.TouchVertex(9)
 	if _, ok := g.edges[9]; !ok {
+		t.Error()
+	}
+}
+
+func TestDirectedGraph(t *testing.T) {
+	g := NewDirected()
+
+	for i := 0; i < 10; i++ {
+		v := VertexId(i)
+		g.AddVertex(v)
+	}
+
+	if len(g.edges) != 10 {
+		fmt.Println(g)
+		t.Error()
+	}
+
+	for i := 0; i < 10; i++ {
+		g.AddEdge(VertexId(i), VertexId(i%2))
+	}
+
+	r := g.Reverse()
+	if !r.IsEdge(1, 7) || r.IsEdge(8, 0) {
+		fmt.Println(r.edges)
 		t.Error()
 	}
 }

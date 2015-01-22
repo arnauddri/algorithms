@@ -47,3 +47,14 @@ func (g *DirGraph) GetSuccessors(vertex VertexId) VerticesIterable {
 
 	return VerticesIterable(&vertexIterableHelper{iterFunc: iterator})
 }
+
+func (g *DirGraph) Reverse() *DirGraph {
+	r := NewDirected()
+	edges := g.EdgesIter()
+
+	for edge := range edges {
+		r.AddEdge(edge.To, edge.From)
+	}
+
+	return r
+}

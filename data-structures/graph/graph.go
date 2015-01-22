@@ -9,8 +9,8 @@ type VertexId uint
 type Vertices []VertexId
 
 type Edge struct {
-	Tail VertexId
-	Head VertexId
+	From VertexId
+	To   VertexId
 }
 
 type Graph interface {
