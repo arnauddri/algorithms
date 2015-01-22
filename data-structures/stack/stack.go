@@ -1,8 +1,11 @@
 package stack
 
+import "sync"
+
 type Stack struct {
 	stack []interface{}
 	len   int
+	lock  sync.Mutex
 }
 
 func New() *Stack {
@@ -14,20 +17,32 @@ func New() *Stack {
 }
 
 func (s *Stack) Len() int {
+	s.lock.Lock()
+	defer s.lock.Unlock()
+
 	return s.len
 }
 
 func (s *Stack) isEmpty() bool {
+	s.lock.Lock()
+	defer s.lock.Unlock()
+
 	return s.len == 0
 }
 
 func (s *Stack) Pop() (el interface{}) {
+	s.lock.Lock()
+	defer s.lock.Unlock()
+
 	el, s.stack = s.stack[0], s.stack[1:]
 	s.len--
 	return
 }
 
 func (s *Stack) Push(el interface{}) {
+	s.lock.Lock()
+	defer s.lock.Unlock()
+
 	prepend := make([]interface{}, 1)
 	prepend[0] = el
 	s.stack = append(prepend, s.stack...)
@@ -35,5 +50,8 @@ func (s *Stack) Push(el interface{}) {
 }
 
 func (s *Stack) Peek() interface{} {
+	s.lock.Lock()
+	defer s.lock.Unlock()
+
 	return s.stack[0]
 }
