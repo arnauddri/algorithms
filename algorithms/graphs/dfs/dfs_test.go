@@ -22,7 +22,7 @@ func TestDfs(t *testing.T) {
 		dfsMap[v] = true
 	}
 
-	dfs(h, graph.VertexId(2), checkVertices)
+	Dfs(h, graph.VertexId(2), checkVertices)
 
 	for i := 0; i < len(dfsMap); i++ {
 		if _, ok := dfsMap[graph.VertexId(i)]; !ok {
