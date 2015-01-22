@@ -13,8 +13,8 @@ Classic algorithms and data structures implemented in Go
 
 #### Graph algorithms
 
-* [Depth First Search]() [(wiki)](http://en.wikipedia.org/wiki/Depth-first_search)
-* [Breadth First Search]() [(wiki)](http://en.wikipedia.org/wiki/Breadth-first_search)
+* [Depth First Search](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/dfs) [(wiki)](http://en.wikipedia.org/wiki/Depth-first_search)
+* [Breadth First Search](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/bfs) [(wiki)](http://en.wikipedia.org/wiki/Breadth-first_search)
 
 ##### Shortest path
 
