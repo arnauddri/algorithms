@@ -2,43 +2,40 @@ package dfs
 
 import (
 	"github.com/arnauddri/algorithms/data-structures/graph"
+	"github.com/arnauddri/algorithms/data-structures/stack"
 )
 
 func UndirectedDfs(g *graph.UnGraph, v graph.VertexId, fn func(graph.VertexId)) {
-	stack := []graph.VertexId{v}
+	s := stack.New()
 	visited := make(map[graph.VertexId]bool)
 
-	for len(stack) > 0 {
-		l := len(stack) - 1
-		v = stack[l]
-		stack = stack[:l]
+	for s.Len() > 0 {
+		v := s.Pop().(graph.VertexId)
 
 		if _, ok := visited[v]; !ok {
 			visited[v] = true
 			fn(v)
 			neighbours := g.GetNeighbours(v).VerticesIter()
 			for neighbour := range neighbours {
-				stack = append(stack, neighbour)
+				s.Push(neighbour)
 			}
 		}
 	}
 }
 
 func DirectedDfs(g *graph.DirGraph, v graph.VertexId, fn func(graph.VertexId)) {
-	stack := []graph.VertexId{v}
+	s := stack.New()
 	visited := make(map[graph.VertexId]bool)
 
-	for len(stack) > 0 {
-		l := len(stack) - 1
-		v = stack[l]
-		stack = stack[:l]
+	for s.Len() > 0 {
+		v = s.Pop().(graph.VertexId)
 
 		if _, ok := visited[v]; !ok {
 			visited[v] = true
 			fn(v)
 			neighbours := g.GetSuccessors(v)
 			for neighbour := range neighbours {
-				stack = append(stack, neighbour)
+				s.Push(neighbour)
 			}
 		}
 	}
