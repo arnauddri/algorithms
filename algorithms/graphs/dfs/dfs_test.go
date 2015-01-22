@@ -23,7 +23,7 @@ func TestUndirectedDfs(t *testing.T) {
 		dfsMap[v] = true
 	}
 
-	undirectedDfs(h, graph.VertexId(2), checkVertices)
+	UndirectedDfs(h, graph.VertexId(2), checkVertices)
 
 	for i := 0; i < len(dfsMap); i++ {
 		if _, ok := dfsMap[graph.VertexId(i)]; !ok {
@@ -50,7 +50,7 @@ func TestDirectedDfs(t *testing.T) {
 		dfsMap[v] = true
 	}
 
-	directedDfs(h, graph.VertexId(3), checkVertices)
+	DirectedDfs(h, graph.VertexId(3), checkVertices)
 
 	for i := 3; i < len(dfsMap); i++ {
 		if _, ok := dfsMap[graph.VertexId(i)]; !ok {
