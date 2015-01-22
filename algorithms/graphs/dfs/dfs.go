@@ -4,7 +4,7 @@ import (
 	"github.com/arnauddri/algorithms/data-structures/graph"
 )
 
-func dfs(g *graph.Graph, v graph.VertexId) map[graph.VertexId]bool {
+func dfs(g *graph.Graph, v graph.VertexId, fn func(graph.VertexId)) {
 	stack := []graph.VertexId{v}
 	visited := make(map[graph.VertexId]bool)
 
@@ -15,11 +15,11 @@ func dfs(g *graph.Graph, v graph.VertexId) map[graph.VertexId]bool {
 
 		if _, ok := visited[v]; !ok {
 			visited[v] = true
+			fn(v)
 			neighbours := g.GetNeighbours(v).VerticesIter()
 			for neighbour := range neighbours {
 				stack = append(stack, neighbour)
 			}
 		}
 	}
-	return visited
 }

@@ -17,7 +17,12 @@ func TestDfs(t *testing.T) {
 		h.AddEdge(graph.VertexId(i), graph.VertexId(i+1))
 	}
 
-	dfsMap := dfs(h, graph.VertexId(2))
+	dfsMap := make(map[graph.VertexId]bool)
+	checkVertices := func(v graph.VertexId) {
+		dfsMap[v] = true
+	}
+
+	dfs(h, graph.VertexId(2), checkVertices)
 
 	for i := 0; i < len(dfsMap); i++ {
 		if _, ok := dfsMap[graph.VertexId(i)]; !ok {
