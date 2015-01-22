@@ -13,14 +13,6 @@ type Edge struct {
 	Head VertexId
 }
 
-type EdgesIterable interface {
-	EdgesIter() <-chan Edge
-}
-
-type VerticesIterable interface {
-	VerticesIter() <-chan VertexId
-}
-
 type Graph interface {
 	EdgesIter()
 	VerticesIter()
@@ -34,12 +26,21 @@ type Graph interface {
 	IsEdge(from, to VertexId) bool
 	Order() int
 	EdgesCount() int
+	GetNeighbours(vertex VertexId) VerticesIterable
 }
 
 type graph struct {
 	edges      map[VertexId]map[VertexId]bool
 	edgesCount int
 	isDirected bool
+}
+
+type EdgesIterable interface {
+	EdgesIter() <-chan Edge
+}
+
+type VerticesIterable interface {
+	VerticesIter() <-chan VertexId
 }
 
 func (g *graph) EdgesIter() <-chan Edge {
@@ -177,6 +178,23 @@ func (g *graph) Order() int {
 
 func (g *graph) EdgesCount() int {
 	return g.edgesCount
+}
+
+func (g *graph) GetNeighbours(vertex VertexId) VerticesIterable {
+	iterator := func() <-chan VertexId {
+		ch := make(chan VertexId)
+		go func() {
+			if connected, ok := g.edges[vertex]; ok {
+				for VertexId, _ := range connected {
+					ch <- VertexId
+				}
+			}
+			close(ch)
+		}()
+		return ch
+	}
+
+	return VerticesIterable(&vertexIterableHelper{iterFunc: iterator})
 }
 
 type vertexIterableHelper struct {

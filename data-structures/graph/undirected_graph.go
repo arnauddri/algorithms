@@ -13,20 +13,3 @@ func NewUndirected() *UnGraph {
 		},
 	}
 }
-
-func (g *UnGraph) GetNeighbours(vertex VertexId) VerticesIterable {
-	iterator := func() <-chan VertexId {
-		ch := make(chan VertexId)
-		go func() {
-			if connected, ok := g.edges[vertex]; ok {
-				for VertexId, _ := range connected {
-					ch <- VertexId
-				}
-			}
-			close(ch)
-		}()
-		return ch
-	}
-
-	return VerticesIterable(&vertexIterableHelper{iterFunc: iterator})
-}

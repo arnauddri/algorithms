@@ -13,3 +13,37 @@ func NewDirected() *DirGraph {
 		},
 	}
 }
+
+func (g *DirGraph) GetPredecessors(vertex VertexId) VerticesIterable {
+	iterator := func() <-chan VertexId {
+		ch := make(chan VertexId)
+		go func() {
+			for i := 0; i < g.Order(); i++ {
+				if g.edges[VertexId(i)][vertex] {
+					ch <- VertexId(i)
+				}
+			}
+			close(ch)
+		}()
+		return ch
+	}
+
+	return VerticesIterable(&vertexIterableHelper{iterFunc: iterator})
+}
+
+func (g *DirGraph) GetSuccessors(vertex VertexId) VerticesIterable {
+	iterator := func() <-chan VertexId {
+		ch := make(chan VertexId)
+		go func() {
+			for i := 0; i < g.Order(); i++ {
+				if g.edges[vertex][VertexId(i)] {
+					ch <- VertexId(i)
+				}
+			}
+			close(ch)
+		}()
+		return ch
+	}
+
+	return VerticesIterable(&vertexIterableHelper{iterFunc: iterator})
+}
