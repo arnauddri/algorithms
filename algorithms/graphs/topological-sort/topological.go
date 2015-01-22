@@ -15,7 +15,7 @@ func Sort(g *graph.DirGraph) *stack.Stack {
 
 	visit = func(v graph.VertexId) {
 		if mark[v] {
-			return
+			panic("Not a Directed Acyclic Graph (DAG)")
 		}
 
 		mark[v] = true
