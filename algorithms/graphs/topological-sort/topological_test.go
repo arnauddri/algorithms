@@ -1,8 +1,9 @@
 package topological
 
 import (
-	//"fmt"
+	"fmt"
 	"github.com/arnauddri/algorithms/data-structures/graph"
+	//"github.com/arnauddri/algorithms/data-structures/stack"
 	"testing"
 )
 
@@ -28,19 +29,13 @@ func TestTopologicalSort(t *testing.T) {
 	h.AddEdge(graph.VertexId(11), graph.VertexId(2))
 	h.AddEdge(graph.VertexId(11), graph.VertexId(9))
 
-	//for i := 0; i < 10; i++ {
-	//h.AddVertex(graph.VertexId(i))
-	//}
+	s := Sort(h)
 
-	//for i := 0; i < 9; i++ {
-	//h.AddEdge(graph.VertexId(i), graph.VertexId(i+1))
-	//}
-
-	Sort(h)
-	//for i := 3; i < len(dfsMap); i++ {
-	//if _, ok := dfsMap[graph.VertexId(i)]; !ok {
-	//fmt.Println(dfsMap)
-	//t.Error()
-	//}
-	//}
+	first := int(s.Pop().(graph.VertexId))
+	if first != 7 &&
+		first != 5 &&
+		first != 3 {
+		fmt.Print(first, first != 7)
+		t.Error()
+	}
 }
