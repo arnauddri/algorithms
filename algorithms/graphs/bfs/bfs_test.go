@@ -1,12 +1,13 @@
 package bfs
 
 import (
+	"fmt"
 	"github.com/arnauddri/algorithms/data-structures/graph"
 	"testing"
 )
 
 func TestBfs(t *testing.T) {
-	h := graph.NewUndirected()
+	h := graph.NewDirected()
 
 	for i := 0; i < 10; i++ {
 		v := graph.VertexId(i)
@@ -22,10 +23,11 @@ func TestBfs(t *testing.T) {
 		bfsMap[v] = true
 	}
 
-	Bfs(h, graph.VertexId(2), checkVertices)
+	Bfs(h, graph.VertexId(3), checkVertices)
 
-	for i := 0; i < len(bfsMap); i++ {
+	for i := 3; i < len(bfsMap); i++ {
 		if _, ok := bfsMap[graph.VertexId(i)]; !ok {
+			fmt.Println(bfsMap)
 			t.Error()
 		}
 	}
