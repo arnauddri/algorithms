@@ -14,30 +14,42 @@ func NewDirected() *DirGraph {
 	}
 }
 
-func (g *DirGraph) GetPredecessors(vertex VertexId) <-chan VertexId {
-	ch := make(chan VertexId)
-	go func() {
-		for i := 0; i < g.Order(); i++ {
-			if g.edges[VertexId(i)][vertex] {
-				ch <- VertexId(i)
+func (g *graph) GetPredecessors(vertex VertexId) VerticesIterable {
+	iterator := func() <-chan VertexId {
+		ch := make(chan VertexId)
+		go func() {
+			if connected, ok := g.edges[vertex]; ok {
+				for VertexId, _ := range connected {
+					if g.IsEdge(VertexId, vertex) {
+						ch <- VertexId
+					}
+				}
 			}
-		}
-		close(ch)
-	}()
-	return ch
+			close(ch)
+		}()
+		return ch
+	}
+
+	return VerticesIterable(&vertexIterableHelper{iterFunc: iterator})
 }
 
-func (g *DirGraph) GetSuccessors(vertex VertexId) <-chan VertexId {
-	ch := make(chan VertexId)
-	go func() {
-		for i := 0; i < g.Order(); i++ {
-			if g.edges[vertex][VertexId(i)] {
-				ch <- VertexId(i)
+func (g *graph) GetSuccessors(vertex VertexId) VerticesIterable {
+	iterator := func() <-chan VertexId {
+		ch := make(chan VertexId)
+		go func() {
+			if connected, ok := g.edges[vertex]; ok {
+				for VertexId, _ := range connected {
+					if g.IsEdge(vertex, VertexId) {
+						ch <- VertexId
+					}
+				}
 			}
-		}
-		close(ch)
-	}()
-	return ch
+			close(ch)
+		}()
+		return ch
+	}
+
+	return VerticesIterable(&vertexIterableHelper{iterFunc: iterator})
 }
 
 func (g *DirGraph) Reverse() *DirGraph {

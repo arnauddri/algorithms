@@ -125,7 +125,7 @@ func TestDirectedGraph(t *testing.T) {
 		t.Error()
 	}
 
-	successors := r.GetSuccessors(1)
+	successors := r.GetSuccessors(1).VerticesIter()
 	for successor := range successors {
 		if successor != 3 &&
 			successor != 5 &&
@@ -135,7 +135,7 @@ func TestDirectedGraph(t *testing.T) {
 		}
 	}
 
-	predecessors := g.GetPredecessors(1)
+	predecessors := g.GetPredecessors(1).VerticesIter()
 	for predecessor := range predecessors {
 		if predecessor != 3 &&
 			predecessor != 5 &&
