@@ -96,7 +96,7 @@ func TestGraph(t *testing.T) {
 		t.Error()
 	}
 
-	g.touchVertex(9)
+	g.TouchVertex(9)
 	if _, ok := g.edges[9]; !ok {
 		t.Error()
 	}

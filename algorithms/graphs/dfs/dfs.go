@@ -4,7 +4,7 @@ import (
 	"github.com/arnauddri/algorithms/data-structures/graph"
 )
 
-func Dfs(g *graph.Graph, v graph.VertexId, fn func(graph.VertexId)) {
+func Dfs(g *graph.UnGraph, v graph.VertexId, fn func(graph.VertexId)) {
 	stack := []graph.VertexId{v}
 	visited := make(map[graph.VertexId]bool)
 

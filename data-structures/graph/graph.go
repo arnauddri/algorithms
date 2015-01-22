@@ -21,6 +21,21 @@ type VerticesIterable interface {
 	VerticesIter() <-chan VertexId
 }
 
+type Graph interface {
+	EdgesIter()
+	VerticesIter()
+	CheckVertex(vertex VertexId) bool
+	TouchVertex(vertex VertexId)
+	AddVertex(vertex VertexId) error
+	RemoveVertex(vertex VertexId) error
+	IsVertex(vertex VertexId) bool
+	AddEdge(from, to VertexId) error
+	RemoveEdge(from, to VertexId) error
+	IsEdge(from, to VertexId) bool
+	Order() int
+	EdgesCount() int
+}
+
 type graph struct {
 	edges      map[VertexId]map[VertexId]bool
 	edgesCount int
@@ -32,8 +47,12 @@ func (g *graph) EdgesIter() <-chan Edge {
 	go func() {
 		for from, connectedVertices := range g.edges {
 			for to, _ := range connectedVertices {
-				if from < to {
+				if g.isDirected {
 					ch <- Edge{from, to}
+				} else {
+					if from < to {
+						ch <- Edge{from, to}
+					}
 				}
 			}
 		}
@@ -59,7 +78,7 @@ func (g *graph) CheckVertex(vertex VertexId) bool {
 	return exists
 }
 
-func (g *graph) touchVertex(vertex VertexId) {
+func (g *graph) TouchVertex(vertex VertexId) {
 	if _, ok := g.edges[vertex]; !ok {
 		g.edges[vertex] = make(map[VertexId]bool)
 	}
@@ -108,8 +127,8 @@ func (g *graph) AddEdge(from, to VertexId) error {
 		return errors.New("Edge already defined")
 	}
 
-	g.touchVertex(from)
-	g.touchVertex(to)
+	g.TouchVertex(from)
+	g.TouchVertex(to)
 
 	g.edges[from][to] = true
 

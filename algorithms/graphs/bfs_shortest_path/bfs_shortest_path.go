@@ -5,7 +5,7 @@ import (
 	"github.com/arnauddri/algorithms/data-structures/graph"
 )
 
-func ShortestPath(g *graph.Graph, start graph.VertexId) (dist map[graph.VertexId]int) {
+func ShortestPath(g *graph.UnGraph, start graph.VertexId) (dist map[graph.VertexId]int) {
 	dist = make(map[graph.VertexId]int)
 	visited := make(map[graph.VertexId]bool)
 
@@ -27,6 +27,6 @@ func ShortestPath(g *graph.Graph, start graph.VertexId) (dist map[graph.VertexId
 	return
 }
 
-func GetDist(g *graph.Graph, from graph.VertexId, to graph.VertexId) int {
+func GetDist(g *graph.UnGraph, from graph.VertexId, to graph.VertexId) int {
 	return ShortestPath(g, from)[to]
 }

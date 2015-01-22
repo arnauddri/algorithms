@@ -6,7 +6,7 @@ import (
 )
 
 func TestBfs(t *testing.T) {
-	h := graph.NewGraph()
+	h := graph.NewUndirected()
 
 	for i := 0; i < 10; i++ {
 		v := graph.VertexId(i)
