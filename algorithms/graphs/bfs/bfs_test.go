@@ -17,7 +17,12 @@ func TestBfs(t *testing.T) {
 		h.AddEdge(graph.VertexId(i), graph.VertexId(i+1))
 	}
 
-	bfsMap := bfs(h, graph.VertexId(2))
+	bfsMap := make(map[graph.VertexId]bool)
+	checkVertices := func(v graph.VertexId) {
+		bfsMap[v] = true
+	}
+
+	bfs(h, graph.VertexId(2), checkVertices)
 
 	for i := 0; i < len(bfsMap); i++ {
 		if _, ok := bfsMap[graph.VertexId(i)]; !ok {

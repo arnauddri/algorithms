@@ -4,7 +4,7 @@ import (
 	"github.com/arnauddri/algorithms/data-structures/graph"
 )
 
-func bfs(g *graph.Graph, start graph.VertexId) map[graph.VertexId]bool {
+func bfs(g *graph.Graph, start graph.VertexId, fn func(graph.VertexId)) {
 	queue := []graph.VertexId{start}
 	visited := make(map[graph.VertexId]bool)
 	var next []graph.VertexId
@@ -14,6 +14,7 @@ func bfs(g *graph.Graph, start graph.VertexId) map[graph.VertexId]bool {
 		for _, vertex := range queue {
 			visited[vertex] = true
 			neighbours := g.GetNeighbours(vertex).VerticesIter()
+			fn(vertex)
 
 			for neighbour := range neighbours {
 
@@ -25,5 +26,4 @@ func bfs(g *graph.Graph, start graph.VertexId) map[graph.VertexId]bool {
 		}
 		queue = next
 	}
-	return visited
 }
