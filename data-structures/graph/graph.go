@@ -21,20 +21,13 @@ type VerticesIterable interface {
 	VerticesIter() <-chan VertexId
 }
 
-type Graph struct {
+type graph struct {
 	edges      map[VertexId]map[VertexId]bool
 	edgesCount int
+	isDirected bool
 }
 
-func NewGraph() *Graph {
-	g := new(Graph)
-	g.edges = make(map[VertexId]map[VertexId]bool)
-	g.edgesCount = 0
-
-	return g
-}
-
-func (g *Graph) EdgesIter() <-chan Edge {
+func (g *graph) EdgesIter() <-chan Edge {
 	ch := make(chan Edge)
 	go func() {
 		for from, connectedVertices := range g.edges {
@@ -49,7 +42,7 @@ func (g *Graph) EdgesIter() <-chan Edge {
 	return ch
 }
 
-func (g *Graph) VerticesIter() <-chan VertexId {
+func (g *graph) VerticesIter() <-chan VertexId {
 	ch := make(chan VertexId)
 	go func() {
 		for vertex, _ := range g.edges {
@@ -60,19 +53,19 @@ func (g *Graph) VerticesIter() <-chan VertexId {
 	return ch
 }
 
-func (g *Graph) CheckVertex(vertex VertexId) bool {
+func (g *graph) CheckVertex(vertex VertexId) bool {
 	_, exists := g.edges[vertex]
 
 	return exists
 }
 
-func (g *Graph) touchVertex(vertex VertexId) {
+func (g *graph) touchVertex(vertex VertexId) {
 	if _, ok := g.edges[vertex]; !ok {
 		g.edges[vertex] = make(map[VertexId]bool)
 	}
 }
 
-func (g *Graph) AddVertex(vertex VertexId) error {
+func (g *graph) AddVertex(vertex VertexId) error {
 	i, _ := g.edges[vertex]
 	if i != nil {
 		return errors.New("Vertex already exists")
@@ -83,8 +76,8 @@ func (g *Graph) AddVertex(vertex VertexId) error {
 	return nil
 }
 
-func (g *Graph) RemoveVertex(vertex VertexId) error {
-	if !g.isVertex(vertex) {
+func (g *graph) RemoveVertex(vertex VertexId) error {
+	if !g.IsVertex(vertex) {
 		return errors.New("Unknown vertex")
 	}
 
@@ -97,7 +90,13 @@ func (g *Graph) RemoveVertex(vertex VertexId) error {
 	return nil
 }
 
-func (g *Graph) AddEdge(from, to VertexId) error {
+func (g *graph) IsVertex(vertex VertexId) (exist bool) {
+	_, exist = g.edges[vertex]
+
+	return
+}
+
+func (g *graph) AddEdge(from, to VertexId) error {
 	if from == to {
 		return errors.New("Cannot add self loop")
 	}
@@ -113,14 +112,17 @@ func (g *Graph) AddEdge(from, to VertexId) error {
 	g.touchVertex(to)
 
 	g.edges[from][to] = true
-	g.edges[to][from] = true
+
+	if !g.isDirected {
+		g.edges[to][from] = true
+	}
 
 	g.edgesCount++
 
 	return nil
 }
 
-func (g *Graph) RemoveEdge(from, to VertexId) error {
+func (g *graph) RemoveEdge(from, to VertexId) error {
 	i, _ := g.edges[from][to]
 	j, _ := g.edges[to][from]
 
@@ -129,45 +131,17 @@ func (g *Graph) RemoveEdge(from, to VertexId) error {
 	}
 
 	g.edges[from][to] = false
-	g.edges[to][from] = false
+
+	if !g.isDirected {
+		g.edges[to][from] = false
+	}
 
 	g.edgesCount--
 
 	return nil
 }
 
-func (g *Graph) Order() int {
-	return len(g.edges)
-}
-
-func (g *Graph) EdgesCount() int {
-	return g.edgesCount
-}
-
-func (g *Graph) GetNeighbours(vertex VertexId) VerticesIterable {
-	iterator := func() <-chan VertexId {
-		ch := make(chan VertexId)
-		go func() {
-			if connected, ok := g.edges[vertex]; ok {
-				for VertexId, _ := range connected {
-					ch <- VertexId
-				}
-			}
-			close(ch)
-		}()
-		return ch
-	}
-
-	return VerticesIterable(&_vertexIterableHelper{iterFunc: iterator})
-}
-
-func (g *Graph) isVertex(vertex VertexId) (exist bool) {
-	_, exist = g.edges[vertex]
-
-	return
-}
-
-func (g *Graph) isEdge(from, to VertexId) (exist bool) {
+func (g *graph) IsEdge(from, to VertexId) (exist bool) {
 	connected, ok := g.edges[from]
 
 	if !ok {
@@ -178,10 +152,18 @@ func (g *Graph) isEdge(from, to VertexId) (exist bool) {
 	return
 }
 
-type _vertexIterableHelper struct {
+func (g *graph) Order() int {
+	return len(g.edges)
+}
+
+func (g *graph) EdgesCount() int {
+	return g.edgesCount
+}
+
+type vertexIterableHelper struct {
 	iterFunc func() <-chan VertexId
 }
 
-func (helper *_vertexIterableHelper) VerticesIter() <-chan VertexId {
+func (helper *vertexIterableHelper) VerticesIter() <-chan VertexId {
 	return helper.iterFunc()
 }

@@ -22,7 +22,7 @@ func TestBfs(t *testing.T) {
 		bfsMap[v] = true
 	}
 
-	bfs(h, graph.VertexId(2), checkVertices)
+	Bfs(h, graph.VertexId(2), checkVertices)
 
 	for i := 0; i < len(bfsMap); i++ {
 		if _, ok := bfsMap[graph.VertexId(i)]; !ok {

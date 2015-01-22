@@ -6,7 +6,7 @@ import (
 )
 
 func TestGraph(t *testing.T) {
-	g := NewGraph()
+	g := NewUndirected()
 
 	for i := 0; i < 10; i++ {
 		v := VertexId(i)
@@ -22,7 +22,7 @@ func TestGraph(t *testing.T) {
 		g.AddEdge(VertexId(i), VertexId(i%2))
 	}
 
-	if g.isEdge(0, 8) == false || g.isEdge(0, 9) == true || g.CheckVertex(2) != true {
+	if g.IsEdge(0, 8) == false || g.IsEdge(0, 9) == true || g.CheckVertex(2) != true {
 		fmt.Println(g)
 		t.Error()
 	}
@@ -43,7 +43,7 @@ func TestGraph(t *testing.T) {
 
 	g.RemoveVertex(VertexId(9))
 
-	if g.isVertex(VertexId(9)) {
+	if g.IsVertex(VertexId(9)) {
 		fmt.Println(g.edges[9] == nil)
 		t.Error()
 	}
@@ -58,8 +58,8 @@ func TestGraph(t *testing.T) {
 
 	g.RemoveEdge(0, 8)
 
-	if g.isEdge(VertexId(0), VertexId(8)) || g.edgesCount != 7 {
-		fmt.Println(g.isEdge(VertexId(0), VertexId(8)), g.edgesCount)
+	if g.IsEdge(VertexId(0), VertexId(8)) || g.edgesCount != 7 {
+		fmt.Println(g.IsEdge(VertexId(0), VertexId(8)), g.edgesCount)
 		t.Error()
 	}
 

@@ -4,7 +4,7 @@ import (
 	"github.com/arnauddri/algorithms/data-structures/graph"
 )
 
-func bfs(g *graph.Graph, start graph.VertexId, fn func(graph.VertexId)) {
+func Bfs(g *graph.Graph, start graph.VertexId, fn func(graph.VertexId)) {
 	queue := []graph.VertexId{start}
 	visited := make(map[graph.VertexId]bool)
 	var next []graph.VertexId
