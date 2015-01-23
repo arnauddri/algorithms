@@ -33,7 +33,7 @@ func DirectedDfs(g *graph.DirGraph, v graph.VertexId, fn func(graph.VertexId)) {
 		if _, ok := visited[v]; !ok {
 			visited[v] = true
 			fn(v)
-			neighbours := g.GetSuccessors(v)
+			neighbours := g.GetSuccessors(v).VerticesIter()
 			for neighbour := range neighbours {
 				s.Push(neighbour)
 			}
