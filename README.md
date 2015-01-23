@@ -17,6 +17,7 @@ Classic algorithms and data structures implemented in Go
 **Searching:**
 * [Depth First Search](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/dfs) [(wiki)](http://en.wikipedia.org/wiki/Depth-first_search)
 * [Breadth First Search](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/bfs) [(wiki)](http://en.wikipedia.org/wiki/Breadth-first_search)
+* [Kosaraju's Algorithm (find all SCCs)](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/kosaraju) [(wiki)](http://en.wikipedia.org/wiki/Kosaraju%27s_algorithm)
 
 **Shortest path:**
 * [bfsShortestPath](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/bfs-shortest-path)
