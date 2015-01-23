@@ -8,27 +8,25 @@ import (
 func Sort(g *graph.DirGraph) *stack.Stack {
 	var visit func(v graph.VertexId)
 	sorted := stack.New()
-
 	visited := make(map[graph.VertexId]bool)
-
-	mark := make(map[graph.VertexId]bool)
+	marked := make(map[graph.VertexId]bool)
 
 	visit = func(v graph.VertexId) {
-		if mark[v] {
+		if marked[v] {
 			panic("Not a Directed Acyclic Graph (DAG)")
 		}
 
-		mark[v] = true
+		marked[v] = true
 		successors := g.GetSuccessors(v).VerticesIter()
 
 		for successor := range successors {
-			if !mark[successor] && !visited[successor] {
+			if !marked[successor] && !visited[successor] {
 				visit(successor)
 			}
 		}
 
 		visited[v] = true
-		mark[v] = false
+		marked[v] = false
 		sorted.Push(v)
 	}
 
