@@ -18,18 +18,14 @@ func TestUndirectedDfs(t *testing.T) {
 		h.AddEdge(graph.VertexId(i), graph.VertexId(i+1))
 	}
 
-	dfsMap := make(map[graph.VertexId]bool)
-	checkVertices := func(v graph.VertexId) {
-		dfsMap[v] = true
-	}
+	counter := 0
+	UndirectedDfs(h, graph.VertexId(3), func(v graph.VertexId) {
+		counter += int(v)
+	})
 
-	UndirectedDfs(h, graph.VertexId(2), checkVertices)
-
-	for i := 0; i < len(dfsMap); i++ {
-		if _, ok := dfsMap[graph.VertexId(i)]; !ok {
-			fmt.Println(dfsMap)
-			t.Error()
-		}
+	if counter != 45 {
+		fmt.Println(counter)
+		t.Error()
 	}
 }
 
@@ -45,17 +41,13 @@ func TestDirectedDfs(t *testing.T) {
 		h.AddEdge(graph.VertexId(i), graph.VertexId(i+1))
 	}
 
-	dfsMap := make(map[graph.VertexId]bool)
-	checkVertices := func(v graph.VertexId) {
-		dfsMap[v] = true
-	}
+	counter := 0
+	DirectedDfs(h, graph.VertexId(3), func(v graph.VertexId) {
+		counter += int(v)
+	})
 
-	DirectedDfs(h, graph.VertexId(3), checkVertices)
-
-	for i := 3; i < len(dfsMap); i++ {
-		if _, ok := dfsMap[graph.VertexId(i)]; !ok {
-			fmt.Println(dfsMap)
-			t.Error()
-		}
+	if counter != 42 {
+		fmt.Println(counter)
+		t.Error()
 	}
 }

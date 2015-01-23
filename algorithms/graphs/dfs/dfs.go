@@ -7,6 +7,7 @@ import (
 
 func UndirectedDfs(g *graph.UnGraph, v graph.VertexId, fn func(graph.VertexId)) {
 	s := stack.New()
+	s.Push(v)
 	visited := make(map[graph.VertexId]bool)
 
 	for s.Len() > 0 {
@@ -25,6 +26,7 @@ func UndirectedDfs(g *graph.UnGraph, v graph.VertexId, fn func(graph.VertexId)) 
 
 func DirectedDfs(g *graph.DirGraph, v graph.VertexId, fn func(graph.VertexId)) {
 	s := stack.New()
+	s.Push(v)
 	visited := make(map[graph.VertexId]bool)
 
 	for s.Len() > 0 {
