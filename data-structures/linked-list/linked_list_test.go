@@ -78,6 +78,18 @@ func TestLinkedList(t *testing.T) {
 		t.Error()
 	}
 
+	// Test Remove
+	l.Remove(*NewNode(8))
+
+	counter = 0
+	l.Map(func(n *Node) {
+		counter += n.Value.(int)
+	})
+
+	if counter != 12 {
+		t.Error()
+	}
+
 	// Test Clear
 	l.Clear()
 	if l.Len() != 0 {

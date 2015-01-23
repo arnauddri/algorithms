@@ -96,11 +96,30 @@ func (l *List) Add(value interface{}, index int) {
 	l.Length++
 }
 
-func (l *List) Remove(node *Node) {
+func (l *List) Remove(value interface{}) {
 	if l.Len() == 0 {
 		panic("Empty list")
 	}
 
+	if l.Head.Value == value {
+		l.Head = l.Head.Next
+		l.Length--
+		return
+	}
+
+	found := 0
+	for n := l.Head; n != nil; n = n.Next {
+
+		if *n.Value.(*Node) == value && found == 0 {
+			n.Next.Prev, n.Prev.Next = n.Prev, n.Next
+			l.Length--
+			found++
+		}
+	}
+
+	if found == 0 {
+		panic("Node not found")
+	}
 }
 
 func (l *List) Get(index int) *Node {
@@ -156,9 +175,8 @@ func (list *List) Map(f func(node *Node)) {
 	}
 }
 
-func (list *List) Each(f func(node Node) bool) {
+func (list *List) Each(f func(node Node)) {
 	for node := list.Head; node != nil; node = node.Next {
-		n := node.Value.(Node)
-		f(n)
+		f(*node)
 	}
 }
