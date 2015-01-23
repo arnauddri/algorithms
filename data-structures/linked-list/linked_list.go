@@ -108,3 +108,22 @@ func (l *List) Get(index int) *Node {
 
 	return node
 }
+
+func (l *List) Clear() {
+	l.Length = 0
+	l.Head = nil
+	l.Tail = nil
+}
+
+func (l *List) Concat(k *List) {
+	l.Tail.Next, k.Head.Prev = k.Head, l.Tail
+	l.Tail = k.Tail
+	l.Length += k.Length
+}
+
+func (list *List) Each(f func(node Node)) {
+	for node := list.Head; node != nil; node = node.Next {
+		n := *node.Value.(*Node)
+		f(n)
+	}
+}
