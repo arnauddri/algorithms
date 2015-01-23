@@ -96,6 +96,13 @@ func (l *List) Add(value interface{}, index int) {
 	l.Length++
 }
 
+func (l *List) Remove(node *Node) {
+	if l.Len() == 0 {
+		panic("Empty list")
+	}
+
+}
+
 func (l *List) Get(index int) *Node {
 	if index > l.Len() {
 		panic("Index out of range")
@@ -107,6 +114,27 @@ func (l *List) Get(index int) *Node {
 	}
 
 	return node
+}
+
+func (l *List) Find(node *Node) int {
+	if l.Len() == 0 {
+		panic("Empty list")
+	}
+
+	index := 0
+	found := -1
+	l.Map(func(n *Node) {
+		index++
+		if n.Value == node.Value && found == -1 {
+			found = index
+		}
+	})
+
+	if found == -1 {
+		panic("Item not found")
+	}
+
+	return found
 }
 
 func (l *List) Clear() {
@@ -121,9 +149,16 @@ func (l *List) Concat(k *List) {
 	l.Length += k.Length
 }
 
-func (list *List) Each(f func(node Node)) {
+func (list *List) Map(f func(node *Node)) {
 	for node := list.Head; node != nil; node = node.Next {
-		n := *node.Value.(*Node)
+		n := node.Value.(*Node)
+		f(n)
+	}
+}
+
+func (list *List) Each(f func(node Node) bool) {
+	for node := list.Head; node != nil; node = node.Next {
+		n := node.Value.(Node)
 		f(n)
 	}
 }

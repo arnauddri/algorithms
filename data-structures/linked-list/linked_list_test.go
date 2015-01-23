@@ -6,7 +6,7 @@ import (
 )
 
 func TestLinkedList(t *testing.T) {
-	// Test Prepend
+	// Test Prepend/Get
 	l := NewList()
 
 	l.Prepend(NewNode(1))
@@ -40,6 +40,7 @@ func TestLinkedList(t *testing.T) {
 		t.Error()
 	}
 
+	// Test Add
 	k.Add(NewNode(8), 1)
 
 	if *k.Get(0).Value.(*Node) != *NewNode(1) ||
@@ -52,20 +53,35 @@ func TestLinkedList(t *testing.T) {
 		t.Error()
 	}
 
+	// Test Concat
 	l.Concat(k)
-
 	if l.Len() != 7 {
 		t.Error()
 	}
 
+	// Test Each
 	counter := 0
-	f := func(node Node) {
+	f := func(node *Node) {
+		//fmt.Println(node.Value)
 		counter += node.Value.(int)
 	}
 
-	l.Each(f)
-
+	l.Map(f)
 	if counter != 20 {
 		t.Error()
 	}
+
+	// Test Find
+	index := l.Find(NewNode(1))
+	if index != 3 {
+		fmt.Println(index)
+		t.Error()
+	}
+
+	// Test Clear
+	l.Clear()
+	if l.Len() != 0 {
+		t.Error()
+	}
+
 }
