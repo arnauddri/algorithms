@@ -3,7 +3,6 @@ package topological
 import (
 	"fmt"
 	"github.com/arnauddri/algorithms/data-structures/graph"
-	//"github.com/arnauddri/algorithms/data-structures/stack"
 	"testing"
 )
 

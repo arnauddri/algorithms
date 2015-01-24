@@ -2,38 +2,42 @@ package kosaraju
 
 import (
 	"fmt"
+	"github.com/arnauddri/algorithms/algorithms/graphs/dfs"
 	"github.com/arnauddri/algorithms/data-structures/graph"
-	//"github.com/arnauddri/algorithms/data-structures/stack"
 	"testing"
 )
 
 func TestTopologicalSort(t *testing.T) {
 	h := graph.NewDirected()
+	addEdge := func(h *graph.DirGraph, i, j int) {
+		h.AddEdge(graph.VertexId(i), graph.VertexId(j))
+	}
 
-	h.AddVertex(graph.VertexId(2))
-	h.AddVertex(graph.VertexId(3))
-	h.AddVertex(graph.VertexId(5))
-	h.AddVertex(graph.VertexId(7))
-	h.AddVertex(graph.VertexId(8))
-	h.AddVertex(graph.VertexId(9))
-	h.AddVertex(graph.VertexId(10))
-	h.AddVertex(graph.VertexId(11))
+	for i := 1; i < 10; i++ {
+		h.AddVertex(graph.VertexId(i))
+	}
 
-	h.AddEdge(graph.VertexId(5), graph.VertexId(7))
-	h.AddEdge(graph.VertexId(7), graph.VertexId(11))
-	h.AddEdge(graph.VertexId(11), graph.VertexId(5))
+	addEdge(h, 1, 7)
+	addEdge(h, 7, 4)
+	addEdge(h, 4, 1)
 
-	h.AddEdge(graph.VertexId(3), graph.VertexId(8))
-	h.AddEdge(graph.VertexId(8), graph.VertexId(5))
-	h.AddEdge(graph.VertexId(5), graph.VertexId(3))
+	addEdge(h, 7, 9)
 
-	h.AddEdge(graph.VertexId(5), graph.VertexId(11))
-	h.AddEdge(graph.VertexId(3), graph.VertexId(10))
-	h.AddEdge(graph.VertexId(8), graph.VertexId(9))
-	h.AddEdge(graph.VertexId(11), graph.VertexId(10))
-	h.AddEdge(graph.VertexId(11), graph.VertexId(2))
-	h.AddEdge(graph.VertexId(11), graph.VertexId(9))
+	addEdge(h, 9, 6)
+	addEdge(h, 6, 3)
+	addEdge(h, 3, 9)
+
+	addEdge(h, 6, 8)
+
+	addEdge(h, 5, 8)
+	addEdge(h, 2, 5)
+	addEdge(h, 8, 2)
+
+	dfs.DirectedDfs(h, graph.VertexId(9), func(v graph.VertexId) {
+		//fmt.Println(v)
+	})
 
 	s := Scc(h)
 	fmt.Println(s)
+
 }
