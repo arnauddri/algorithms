@@ -10,7 +10,7 @@ import (
 func TestTopologicalSort(t *testing.T) {
 	h := graph.NewDirected()
 	addEdge := func(h *graph.DirGraph, i, j int) {
-		h.AddEdge(graph.VertexId(i), graph.VertexId(j))
+		h.AddEdge(graph.VertexId(i), graph.VertexId(j), 1)
 	}
 
 	for i := 1; i < 10; i++ {
