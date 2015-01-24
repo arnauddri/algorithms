@@ -19,7 +19,7 @@ func TestUndirectedGraph(t *testing.T) {
 	}
 
 	for i := 0; i < 10; i++ {
-		g.AddEdge(VertexId(i), VertexId(i%2))
+		g.AddEdge(VertexId(i), VertexId(i%2), 1)
 	}
 
 	if g.IsEdge(0, 8) == false || g.IsEdge(0, 9) == true || g.CheckVertex(2) != true {
@@ -28,7 +28,7 @@ func TestUndirectedGraph(t *testing.T) {
 	}
 
 	// AddEdge should fail for already existing Edge
-	err := g.AddEdge(0, 2)
+	err := g.AddEdge(0, 2, 1)
 	if err == nil {
 		fmt.Println(g)
 		t.Error()
@@ -58,7 +58,7 @@ func TestUndirectedGraph(t *testing.T) {
 
 	g.RemoveEdge(0, 8)
 
-	if g.IsEdge(VertexId(0), VertexId(8)) || g.edgesCount != 7 {
+	if g.IsEdge(VertexId(0), VertexId(8)) == true || g.edgesCount != 7 {
 		fmt.Println(g.IsEdge(VertexId(0), VertexId(8)), g.edgesCount)
 		t.Error()
 	}
@@ -79,7 +79,7 @@ func TestUndirectedGraph(t *testing.T) {
 	}
 
 	if g.EdgesCount() != countEdge {
-		fmt.Println(countEdge, g.edges)
+		//fmt.Println(countEdge, g.edges)
 		t.Error()
 	}
 
@@ -116,7 +116,7 @@ func TestDirectedGraph(t *testing.T) {
 	}
 
 	for i := 0; i < 10; i++ {
-		g.AddEdge(VertexId(i), VertexId(i%2))
+		g.AddEdge(VertexId(i), VertexId(i%2), 1)
 	}
 
 	r := g.Reverse()

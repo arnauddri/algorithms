@@ -8,7 +8,7 @@ func NewDirected() *DirGraph {
 	return &DirGraph{
 		graph{
 			edgesCount: 0,
-			edges:      make(map[VertexId]map[VertexId]bool),
+			edges:      make(map[VertexId]map[VertexId]int),
 			isDirected: true,
 		},
 	}
@@ -57,7 +57,7 @@ func (g *DirGraph) Reverse() *DirGraph {
 	edges := g.EdgesIter()
 
 	for edge := range edges {
-		r.AddEdge(edge.To, edge.From)
+		r.AddEdge(edge.To, edge.From, 1)
 	}
 
 	return r

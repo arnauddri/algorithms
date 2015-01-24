@@ -13,24 +13,8 @@ type Edge struct {
 	To   VertexId
 }
 
-type Graph interface {
-	EdgesIter()
-	VerticesIter()
-	CheckVertex(vertex VertexId) bool
-	TouchVertex(vertex VertexId)
-	AddVertex(vertex VertexId) error
-	RemoveVertex(vertex VertexId) error
-	IsVertex(vertex VertexId) bool
-	AddEdge(from, to VertexId) error
-	RemoveEdge(from, to VertexId) error
-	IsEdge(from, to VertexId) bool
-	Order() int
-	EdgesCount() int
-	GetNeighbours(vertex VertexId) VerticesIterable
-}
-
 type graph struct {
-	edges      map[VertexId]map[VertexId]bool
+	edges      map[VertexId]map[VertexId]int
 	edgesCount int
 	isDirected bool
 }
@@ -81,7 +65,7 @@ func (g *graph) CheckVertex(vertex VertexId) bool {
 
 func (g *graph) TouchVertex(vertex VertexId) {
 	if _, ok := g.edges[vertex]; !ok {
-		g.edges[vertex] = make(map[VertexId]bool)
+		g.edges[vertex] = make(map[VertexId]int)
 	}
 }
 
@@ -91,7 +75,7 @@ func (g *graph) AddVertex(vertex VertexId) error {
 		return errors.New("Vertex already exists")
 	}
 
-	g.edges[vertex] = make(map[VertexId]bool)
+	g.edges[vertex] = make(map[VertexId]int)
 
 	return nil
 }
@@ -116,7 +100,7 @@ func (g *graph) IsVertex(vertex VertexId) (exist bool) {
 	return
 }
 
-func (g *graph) AddEdge(from, to VertexId) error {
+func (g *graph) AddEdge(from, to VertexId, weight int) error {
 	if from == to {
 		return errors.New("Cannot add self loop")
 	}
@@ -124,17 +108,17 @@ func (g *graph) AddEdge(from, to VertexId) error {
 	i, _ := g.edges[from][to]
 	j, _ := g.edges[to][from]
 
-	if i == true || j == true {
+	if i > 0 || j > 0 {
 		return errors.New("Edge already defined")
 	}
 
 	g.TouchVertex(from)
 	g.TouchVertex(to)
 
-	g.edges[from][to] = true
+	g.edges[from][to] = weight
 
 	if !g.isDirected {
-		g.edges[to][from] = true
+		g.edges[to][from] = weight
 	}
 
 	g.edgesCount++
@@ -146,14 +130,14 @@ func (g *graph) RemoveEdge(from, to VertexId) error {
 	i, _ := g.edges[from][to]
 	j, _ := g.edges[to][from]
 
-	if i == false || j == false {
+	if i == -1 || j == -1 {
 		return errors.New("Edge doesn't exist")
 	}
 
-	g.edges[from][to] = false
+	g.edges[from][to] = -1
 
 	if !g.isDirected {
-		g.edges[to][from] = false
+		g.edges[to][from] = -1
 	}
 
 	g.edgesCount--
@@ -161,15 +145,15 @@ func (g *graph) RemoveEdge(from, to VertexId) error {
 	return nil
 }
 
-func (g *graph) IsEdge(from, to VertexId) (exist bool) {
+func (g *graph) IsEdge(from, to VertexId) bool {
 	connected, ok := g.edges[from]
 
 	if !ok {
 		panic("Vertex doesn't exit")
 	}
 
-	exist, _ = connected[to]
-	return
+	weight := connected[to]
+	return weight > 0
 }
 
 func (g *graph) Order() int {
