@@ -11,6 +11,7 @@ Classic algorithms and data structures implemented in Go
 * [Queue](https://github.com/arnauddri/algorithms/tree/master/data-structures/queue) [(wiki)](http://en.wikipedia.org/wiki/Queue_%28abstract_data_type%29)
 * [Stack](https://github.com/arnauddri/algorithms/tree/master/data-structures/stack) [(wiki)](http://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29)
 * [Linked List](https://github.com/arnauddri/algorithms/tree/master/data-structures/linked-list) [(wiki)](http://en.wikipedia.org/wiki/Linked_list)
+* [Min/Max Heap](https://github.com/arnauddri/algorithms/tree/master/data-structures/heap) [(wiki)](http://en.wikipedia.org/wiki/Heap_%28data_structure%29)
 
 #### Graph algorithms
 
