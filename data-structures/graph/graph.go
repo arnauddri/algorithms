@@ -164,6 +164,10 @@ func (g *graph) EdgesCount() int {
 	return g.edgesCount
 }
 
+func (g *graph) GetEdge(from, to VertexId) int {
+	return g.edges[from][to]
+}
+
 func (g *graph) GetNeighbours(vertex VertexId) VerticesIterable {
 	iterator := func() <-chan VertexId {
 		ch := make(chan VertexId)
