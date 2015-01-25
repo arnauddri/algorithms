@@ -52,3 +52,7 @@ Classic algorithms and data structures implemented in Go
 * [Insertion Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/insertion-sort) [(wiki)](http://en.wikipedia.org/wiki/Insertion_sort)
 * [Shell Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/shell-sort) [(wiki)](http://en.wikipedia.org/wiki/Shellsort)
 * [Selection Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/sorting/selection-sort) [(wiki)](http://en.wikipedia.org/wiki/Selection_sort)
+
+#### Searching algorithms
+
+* [Binary Search](https://github.com/arnauddri/algorithms/tree/master/algorithms/searching/binary-search) [(wiki)](http://en.wikipedia.org/wiki/Binary_search_algorithm)
