@@ -1,7 +1,6 @@
 package heap
 
 import (
-	//"fmt"
 	"sync"
 )
 
