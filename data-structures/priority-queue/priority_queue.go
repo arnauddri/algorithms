@@ -41,3 +41,26 @@ func (pq *PQ) Insert(el Item) {
 func (pq *PQ) Extract() (el Item) {
 	return pq.data.Extract().(Item)
 }
+
+func (pq *PQ) changePriority(el Item, priority int) {
+	var storage = make([]Item, 0)
+
+	popped := pq.Extract()
+
+	for el != popped {
+		if pq.Len() == 0 {
+			panic("Item not found")
+		}
+
+		storage = append(storage, popped)
+		popped = pq.Extract()
+	}
+
+	el.Priority = priority
+	pq.data.Insert(el)
+
+	for len(storage) > 0 {
+		pq.data.Insert(storage[0])
+		storage = storage[1 : len(storage)-1]
+	}
+}
