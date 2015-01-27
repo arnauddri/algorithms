@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestMinHeap(t *testing.T) {
+func TestPriorityQueue(t *testing.T) {
 	h := New()
 
 	h.Insert(*NewItem(8, 10))
@@ -29,5 +29,27 @@ func TestMinHeap(t *testing.T) {
 			fmt.Println(sorted)
 			t.Error()
 		}
+	}
+}
+
+func TestChangePriority(t *testing.T) {
+	h := New()
+
+	h.Insert(*NewItem(8, 10))
+	h.Insert(*NewItem(7, 11))
+	h.Insert(*NewItem(6, 12))
+	h.Insert(*NewItem(3, 13))
+	h.Insert(*NewItem(1, 14))
+	h.Insert(*NewItem(0, 15))
+	h.Insert(*NewItem(2, 16))
+	h.Insert(*NewItem(4, 17))
+	h.Insert(*NewItem(9, 18))
+	h.Insert(*NewItem(5, 19))
+
+	h.ChangePriority(8, 66)
+	popped := h.Extract()
+
+	if popped.Value != 8 {
+		t.Error()
 	}
 }

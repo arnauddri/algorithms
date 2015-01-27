@@ -42,12 +42,12 @@ func (pq *PQ) Extract() (el Item) {
 	return pq.data.Extract().(Item)
 }
 
-func (pq *PQ) changePriority(el Item, priority int) {
+func (pq *PQ) ChangePriority(val interface{}, priority int) {
 	var storage = make([]Item, 0)
 
 	popped := pq.Extract()
 
-	for el != popped {
+	for val != popped.Value {
 		if pq.Len() == 0 {
 			panic("Item not found")
 		}
@@ -56,11 +56,12 @@ func (pq *PQ) changePriority(el Item, priority int) {
 		popped = pq.Extract()
 	}
 
-	el.Priority = priority
-	pq.data.Insert(el)
+	popped.Priority = priority
+	pq.data.Insert(popped)
 
-	for len(storage) > 0 {
+	for len(storage) > 1 {
 		pq.data.Insert(storage[0])
 		storage = storage[1 : len(storage)-1]
 	}
+	pq.data.Insert(storage[0])
 }
