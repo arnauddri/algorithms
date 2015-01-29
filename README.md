@@ -6,6 +6,7 @@ Classic algorithms and data structures implemented in Go
 
 #### Data Structures
 
+* [Binary Search Tree](https://github.com/arnauddri/algorithms/tree/master/data-structures/binary-tree) [(wiki)](http://en.wikipedia.org/wiki/Binary_tree)
 * [Graph](https://github.com/arnauddri/algorithms/tree/master/data-structures/graph) [(wiki)](http://en.wikipedia.org/wiki/Graph_%28abstract_data_type)
 * [Matrix](https://github.com/arnauddri/algorithms/tree/master/data-structures/matrix) [(wiki)](http://en.wikipedia.org/wiki/Matrix_(mathematics))
 * [Queue](https://github.com/arnauddri/algorithms/tree/master/data-structures/queue) [(wiki)](http://en.wikipedia.org/wiki/Queue_%28abstract_data_type%29)
