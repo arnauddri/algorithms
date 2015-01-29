@@ -1,7 +1,7 @@
 package list
 
 import (
-//"fmt"
+	"errors"
 )
 
 type List struct {
@@ -67,24 +67,24 @@ func (l *List) Append(value interface{}) {
 	l.Length++
 }
 
-func (l *List) Add(value interface{}, index int) {
+func (l *List) Add(value interface{}, index int) error {
 	if index > l.Len() {
-		panic("Index out of range")
+		return errors.New("Index out of range")
 	}
 
 	node := NewNode(value)
 
 	if l.Len() == 0 || index == 0 {
 		l.Prepend(value)
-		return
+		return nil
 	}
 
 	if l.Len()-1 == index {
 		l.Append(value)
-		return
+		return nil
 	}
 
-	nextNode := l.Get(index)
+	nextNode, _ := l.Get(index)
 	prevNode := nextNode.Prev
 
 	prevNode.Next = node
@@ -94,17 +94,19 @@ func (l *List) Add(value interface{}, index int) {
 	node.Next = nextNode
 
 	l.Length++
+
+	return nil
 }
 
-func (l *List) Remove(value interface{}) {
+func (l *List) Remove(value interface{}) error {
 	if l.Len() == 0 {
-		panic("Empty list")
+		return errors.New("Empty list")
 	}
 
 	if l.Head.Value == value {
 		l.Head = l.Head.Next
 		l.Length--
-		return
+		return nil
 	}
 
 	found := 0
@@ -118,13 +120,15 @@ func (l *List) Remove(value interface{}) {
 	}
 
 	if found == 0 {
-		panic("Node not found")
+		return errors.New("Node not found")
 	}
+
+	return nil
 }
 
-func (l *List) Get(index int) *Node {
+func (l *List) Get(index int) (*Node, error) {
 	if index > l.Len() {
-		panic("Index out of range")
+		return nil, errors.New("Index out of range")
 	}
 
 	node := l.Head
@@ -132,12 +136,12 @@ func (l *List) Get(index int) *Node {
 		node = node.Next
 	}
 
-	return node
+	return node, nil
 }
 
-func (l *List) Find(node *Node) int {
+func (l *List) Find(node *Node) (int, error) {
 	if l.Len() == 0 {
-		panic("Empty list")
+		return 0, errors.New("Empty list")
 	}
 
 	index := 0
@@ -150,10 +154,10 @@ func (l *List) Find(node *Node) int {
 	})
 
 	if found == -1 {
-		panic("Item not found")
+		return 0, errors.New("Item not found")
 	}
 
-	return found
+	return found, nil
 }
 
 func (l *List) Clear() {

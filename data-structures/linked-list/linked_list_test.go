@@ -13,13 +13,18 @@ func TestLinkedList(t *testing.T) {
 	l.Prepend(NewNode(2))
 	l.Prepend(NewNode(3))
 
-	if *l.Get(0).Value.(*Node) != *NewNode(3) ||
-		*l.Get(1).Value.(*Node) != *NewNode(2) ||
-		*l.Get(2).Value.(*Node) != *NewNode(1) {
+	zero := *slice(l.Get(0))[0].(*Node).Value.(*Node)
+	one := *slice(l.Get(1))[0].(*Node).Value.(*Node)
+	two := *slice(l.Get(2))[0].(*Node).Value.(*Node)
 
-		fmt.Println(l.Get(0).Value)
-		fmt.Println(l.Get(1).Value)
-		fmt.Println(l.Get(2).Value)
+	if zero != *NewNode(3) ||
+		one != *NewNode(2) ||
+		two != *NewNode(1) {
+
+		fmt.Println(*one.Value.(*Node), *NewNode(2))
+		fmt.Println(zero.Value)
+		fmt.Println(one.Value)
+		fmt.Println(two.Value)
 		t.Error()
 	}
 
@@ -30,26 +35,35 @@ func TestLinkedList(t *testing.T) {
 	k.Append(NewNode(2))
 	k.Append(NewNode(3))
 
-	if *k.Get(0).Value.(*Node) != *NewNode(1) ||
-		*k.Get(1).Value.(*Node) != *NewNode(2) ||
-		*k.Get(2).Value.(*Node) != *NewNode(3) {
+	zero = *slice(k.Get(0))[0].(*Node).Value.(*Node)
+	one = *slice(k.Get(1))[0].(*Node).Value.(*Node)
+	two = *slice(k.Get(2))[0].(*Node).Value.(*Node)
 
-		fmt.Println(k.Get(0).Value)
-		fmt.Println(k.Get(1).Value)
-		fmt.Println(k.Get(2).Value)
+	if zero != *NewNode(1) ||
+		one != *NewNode(2) ||
+		two != *NewNode(3) {
+
+		fmt.Println(zero.Value)
+		fmt.Println(one.Value)
+		fmt.Println(two.Value)
 		t.Error()
 	}
 
 	// Test Add
 	k.Add(NewNode(8), 1)
 
-	if *k.Get(0).Value.(*Node) != *NewNode(1) ||
-		*k.Get(1).Value.(*Node) != *NewNode(8) ||
-		*k.Get(2).Value.(*Node) != *NewNode(2) {
+	zero = *slice(k.Get(0))[0].(*Node).Value.(*Node)
+	one = *slice(k.Get(1))[0].(*Node).Value.(*Node)
+	two = *slice(k.Get(2))[0].(*Node).Value.(*Node)
 
-		fmt.Println(k.Get(0).Value)
-		fmt.Println(k.Get(1).Value)
-		fmt.Println(k.Get(2).Value)
+	if zero != *NewNode(1) ||
+		one != *NewNode(8) ||
+		two != *NewNode(2) {
+
+		fmt.Println(zero.Value)
+		fmt.Println(one.Value)
+		fmt.Println(two.Value)
+
 		t.Error()
 	}
 
@@ -62,7 +76,6 @@ func TestLinkedList(t *testing.T) {
 	// Test Each
 	counter := 0
 	f := func(node *Node) {
-		//fmt.Println(node.Value)
 		counter += node.Value.(int)
 	}
 
@@ -72,7 +85,7 @@ func TestLinkedList(t *testing.T) {
 	}
 
 	// Test Find
-	index := l.Find(NewNode(1))
+	index, _ := l.Find(NewNode(1))
 	if index != 3 {
 		fmt.Println(index)
 		t.Error()
@@ -96,4 +109,8 @@ func TestLinkedList(t *testing.T) {
 		t.Error()
 	}
 
+}
+
+func slice(args ...interface{}) []interface{} {
+	return args
 }
