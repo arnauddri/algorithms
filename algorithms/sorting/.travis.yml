@@ -1,0 +1,22 @@
+language: go
+
+go:
+  - 1.3
+  - tip
+
+before_install:
+  - go get github.com/axw/gocov/gocov
+  - go get github.com/mattn/goveralls
+  - if ! go get code.google.com/p/go.tools/cmd/cover; then go get golang.org/x/tools/cmd/cover; fi
+
+script:
+  - $HOME/gopath/bin/goveralls
+  - go build -x -v ./...
+  - go test -x -v ./...
+
+notifications:
+  email:
+    recipients:
+      - arnaud.drizard@gmail.com
+    on_success: change
+    on_failure: always
