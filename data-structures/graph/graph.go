@@ -100,6 +100,10 @@ func (g *graph) IsVertex(vertex VertexId) (exist bool) {
 	return
 }
 
+func (g *graph) VerticesCount() int {
+	return len(g.edges)
+}
+
 func (g *graph) AddEdge(from, to VertexId, weight int) error {
 	if from == to {
 		return errors.New("Cannot add self loop")

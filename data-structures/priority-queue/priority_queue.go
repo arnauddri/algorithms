@@ -1,7 +1,9 @@
 package pq
 
 import (
+	"fmt"
 	"github.com/arnauddri/algorithms/data-structures/heap"
+	"github.com/arnauddri/algorithms/data-structures/queue"
 )
 
 type Item struct {
@@ -43,25 +45,24 @@ func (pq *PQ) Extract() (el Item) {
 }
 
 func (pq *PQ) ChangePriority(val interface{}, priority int) {
-	var storage = make([]Item, 0)
+	var storage = queue.New()
 
 	popped := pq.Extract()
 
 	for val != popped.Value {
+		fmt.Println(val, popped.Value)
 		if pq.Len() == 0 {
 			panic("Item not found")
 		}
 
-		storage = append(storage, popped)
+		storage.Push(popped)
 		popped = pq.Extract()
 	}
 
 	popped.Priority = priority
 	pq.data.Insert(popped)
 
-	for len(storage) > 1 {
-		pq.data.Insert(storage[0])
-		storage = storage[1 : len(storage)-1]
+	for storage.Len() > 0 {
+		pq.data.Insert(storage.Shift().(heap.Item))
 	}
-	pq.data.Insert(storage[0])
 }

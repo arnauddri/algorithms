@@ -18,8 +18,8 @@ func New() *Queue {
 }
 
 func (q *Queue) Len() int {
-	q.lock.Lock()
-	defer q.lock.Unlock()
+	//q.lock.Lock()
+	//defer q.lock.Unlock()
 
 	return q.len
 }
@@ -32,8 +32,8 @@ func (q *Queue) isEmpty() bool {
 }
 
 func (q *Queue) Shift() (el interface{}) {
-	q.lock.Lock()
-	defer q.lock.Unlock()
+	//q.lock.Lock()
+	//defer q.lock.Unlock()
 
 	el, q.queue = q.queue[0], q.queue[1:]
 	q.len--
@@ -41,11 +41,13 @@ func (q *Queue) Shift() (el interface{}) {
 }
 
 func (q *Queue) Push(el interface{}) {
-	q.lock.Lock()
-	defer q.lock.Unlock()
+	//q.lock.Lock()
+	//defer q.lock.Unlock()
 
 	q.queue = append(q.queue, el)
 	q.len++
+
+	return
 }
 
 func (q *Queue) Peek() interface{} {
