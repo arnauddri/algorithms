@@ -1,4 +1,4 @@
-# Algorithms
+# Algorithms [![Build Status](https://travis-ci.org/arnauddri/algorithms.svg?branch=master)](https://travis-ci.org/arnauddri/algorithms)
 
 Classic algorithms and data structures implemented in Go
 
