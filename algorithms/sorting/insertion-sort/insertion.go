@@ -2,14 +2,14 @@ package insertion
 
 import ()
 
-func sort(a []int) {
-	for i := 1; i < len(a); i++ {
-		value := a[i]
+func sort(arr []int) {
+	for i := 1; i < len(arr); i++ {
+		value := arr[i]
 		j := i - 1
-		for j >= 0 && a[j] > value {
-			a[j+1] = a[j]
+		for j >= 0 && arr[j] > value {
+			arr[j+1] = arr[j]
 			j = j - 1
 		}
-		a[j+1] = value
+		arr[j+1] = value
 	}
 }

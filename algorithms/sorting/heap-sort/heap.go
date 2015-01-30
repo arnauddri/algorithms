@@ -4,17 +4,15 @@ import (
 	"github.com/arnauddri/algorithms/data-structures/heap"
 )
 
-func sort(a []int) []int {
+func sort(arr []int) []int {
 	h := heap.NewMin()
-	for i := 0; i < len(a); i++ {
-		h.Insert(heap.Int(a[i]))
+	for i := 0; i < len(arr); i++ {
+		h.Insert(heap.Int(arr[i]))
 	}
 
-	sorted := make([]int, 0)
-
-	for i := 0; i < len(a); i++ {
-		sorted = append(sorted, int(h.Extract().(heap.Int)))
+	for i := 0; i < len(arr); i++ {
+		arr[i] = int(h.Extract().(heap.Int))
 	}
 
-	return sorted
+	return arr
 }

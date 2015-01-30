@@ -1,16 +1,16 @@
 package selection
 
-func sort(a []int) []int {
-	for i := 0; i < len(a); i++ {
+func sort(arr []int) []int {
+	for i := 0; i < len(arr); i++ {
 		min := i
-		for j := i + 1; j < len(a); j++ {
-			if a[j] < a[min] {
+		for j := i + 1; j < len(arr); j++ {
+			if arr[j] < arr[min] {
 				min = j
 			}
 		}
 		if min != i {
-			a[i], a[min] = a[min], a[i]
+			arr[i], arr[min] = arr[min], arr[i]
 		}
 	}
-	return a
+	return arr
 }

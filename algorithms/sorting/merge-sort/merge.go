@@ -1,9 +1,7 @@
 package merge
 
-var arr = []int{20, 43, 52, -1, 43, 29, 34}
-var s = make([]int, len(arr)/2+1)
-
 func sort(arr []int) {
+	var s = make([]int, len(arr)/2+1)
 	if len(arr) < 2 {
 		return
 	}

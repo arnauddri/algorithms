@@ -1,9 +1,7 @@
 package permutations
 
 import (
-	"bufio"
-	"os"
-	"strconv"
+	"github.com/arnauddri/algorithms/algorithms/sorting/utils"
 	"testing"
 )
 
@@ -26,7 +24,7 @@ func TestRecursive(t *testing.T) {
 }
 
 func BenchmarkRecursive(b *testing.B) {
-	array := _getArray()
+	array := dummy.GetArrayOfSize(10000)
 
 	for i := 0; i < b.N; i++ {
 		recursiveCount(array)
@@ -34,27 +32,11 @@ func BenchmarkRecursive(b *testing.B) {
 }
 
 func BenchmarkIterative(b *testing.B) {
-	array := _getArray()
+	array := dummy.GetArrayOfSize(10000)
 
 	for i := 0; i < b.N; i++ {
 		iterativeCount(array)
 	}
-}
-
-func _getArray() []int {
-	f, err := os.Open("./IntegerArray.txt")
-	defer f.Close()
-	check(err)
-
-	numbers := make([]int, 0)
-	scanner := bufio.NewScanner(f)
-
-	for scanner.Scan() {
-		s, _ := strconv.Atoi(scanner.Text())
-		numbers = append(numbers, s)
-	}
-
-	return numbers
 }
 
 func check(e error) {
