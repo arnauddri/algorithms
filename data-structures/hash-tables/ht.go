@@ -5,7 +5,7 @@ package ht
 
 import (
 	"errors"
-	"fmt"
+	//"fmt"
 	"github.com/arnauddri/algorithms/data-structures/linked-list"
 	"math"
 )
@@ -34,7 +34,6 @@ func (ht *HashTable) Get(key string) (string, error) {
 		return "", errors.New("Not Found")
 	}
 
-	fmt.Println(item)
 	return item.value, err
 }
 
@@ -50,12 +49,11 @@ func (ht *HashTable) Put(key, value string) {
 	a, err := ht.find(index, key)
 	if err != nil {
 		// The key doesn't exist in HashTable
-		ht.Table[index].Append(list.NewNode(item))
+		ht.Table[index].Append(item)
 		ht.Size++
 	} else {
 		// The key exists so we overwrite its value
 		a.value = value
-		fmt.Println(a)
 	}
 }
 
@@ -65,14 +63,19 @@ func (ht *HashTable) position(s string) int {
 
 func (ht *HashTable) find(i int, key string) (*item, error) {
 	l := ht.Table[i]
-	index, err1 := l.Find(&list.Node{Value: i})
-	value, err2 := l.Get(index)
+	var val *item
 
-	if err1 != nil || err2 != nil {
+	l.Each(func(node list.Node) {
+		if node.Value.(*item).key == key {
+			val = node.Value.(*item)
+		}
+	})
+
+	if val == nil {
 		return nil, errors.New("Not Found")
 	}
 
-	return value.Value.(*item), nil
+	return val, nil
 }
 
 // Horner's Method to hash string of length L (O(L))
