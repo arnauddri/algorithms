@@ -57,6 +57,24 @@ func (ht *HashTable) Put(key, value string) {
 	}
 }
 
+func (ht *HashTable) Del(key string) error {
+	index := ht.position(key)
+	l := ht.Table[index]
+	var val *item
+
+	l.Each(func(node list.Node) {
+		if node.Value.(*item).key == key {
+			val = node.Value.(*item)
+		}
+	})
+
+	if val == nil {
+		return nil
+	}
+
+	return l.Remove(val)
+}
+
 func (ht *HashTable) position(s string) int {
 	return hashCode(s) % ht.Capacity
 }

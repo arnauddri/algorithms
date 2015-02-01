@@ -28,6 +28,12 @@ func TestHt(t *testing.T) {
 		t.Error()
 	}
 
+	// Test delete
+	ht.Del("peter")
+	val, err = ht.Get("peter")
+	if val != "" || err == nil {
+		t.Error()
+	}
 }
 
 func TestHash(t *testing.T) {
