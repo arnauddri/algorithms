@@ -1,6 +1,6 @@
 # Algorithms [![Build Status](https://travis-ci.org/arnauddri/algorithms.svg?branch=master)](https://travis-ci.org/arnauddri/algorithms)
 
-Classic algorithms and data structures implemented in Go, just for sciences...
+Classic algorithms and data structures implemented in Go. Not for production use, it is mostly an attempt to get comfortable both with Go and key CS concepts.
 
 ### Contents
 
