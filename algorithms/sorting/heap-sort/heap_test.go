@@ -7,7 +7,7 @@ import (
 )
 
 func TestHeapSort(t *testing.T) {
-	list := dummy.GetArrayOfSize(10)
+	list := utils.GetArrayOfSize(10)
 
 	sort(list)
 

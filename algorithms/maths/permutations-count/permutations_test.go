@@ -24,7 +24,7 @@ func TestRecursive(t *testing.T) {
 }
 
 func BenchmarkRecursive(b *testing.B) {
-	array := dummy.GetArrayOfSize(10000)
+	array := utils.GetArrayOfSize(10000)
 
 	for i := 0; i < b.N; i++ {
 		recursiveCount(array)
@@ -32,7 +32,7 @@ func BenchmarkRecursive(b *testing.B) {
 }
 
 func BenchmarkIterative(b *testing.B) {
-	array := dummy.GetArrayOfSize(10000)
+	array := utils.GetArrayOfSize(10000)
 
 	for i := 0; i < b.N; i++ {
 		iterativeCount(array)

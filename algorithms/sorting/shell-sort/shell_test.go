@@ -7,7 +7,7 @@ import (
 )
 
 func TestShellSort(t *testing.T) {
-	list := dummy.GetArrayOfSize(100)
+	list := utils.GetArrayOfSize(100)
 
 	sort(list)
 
