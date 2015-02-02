@@ -24,7 +24,8 @@ Classic algorithms and data structures implemented in Go
 * [Kosaraju's Algorithm (find all SCCs)](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/kosaraju) [(wiki)](http://en.wikipedia.org/wiki/Kosaraju%27s_algorithm)
 
 **Shortest path:**
-* [bfsShortestPath](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/bfs-shortest-path)
+* [Breadth First Search Shortest Path](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/bfs-shortest-path) [(wiki)](http://en.wikipedia.org/wiki/Breadth-first_search)
+* [Dijkstra](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/dijkstra) [(wiki)](http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
 
 **Sorting:**
 * [Topological Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/topological-sort) [(wiki)](http://en.wikipedia.org/wiki/Topological_sorting)
