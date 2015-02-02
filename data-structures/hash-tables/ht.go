@@ -5,7 +5,6 @@ package ht
 
 import (
 	"errors"
-	//"fmt"
 	"github.com/arnauddri/algorithms/data-structures/linked-list"
 	"math"
 )
@@ -18,7 +17,7 @@ type HashTable struct {
 
 type item struct {
 	key   string
-	value string
+	value interface{}
 }
 
 func New(cap int) *HashTable {
@@ -26,7 +25,7 @@ func New(cap int) *HashTable {
 	return &HashTable{Table: table, Size: 0, Capacity: cap}
 }
 
-func (ht *HashTable) Get(key string) (string, error) {
+func (ht *HashTable) Get(key string) (interface{}, error) {
 	index := ht.position(key)
 	item, err := ht.find(index, key)
 
@@ -72,7 +71,18 @@ func (ht *HashTable) Del(key string) error {
 		return nil
 	}
 
+	ht.Size--
 	return l.Remove(val)
+}
+
+func (ht *HashTable) ForEach(f func(*item)) {
+	for k := range ht.Table {
+		if ht.Table[k] != nil {
+			ht.Table[k].Each(func(node list.Node) {
+				f(node.Value.(*item))
+			})
+		}
+	}
 }
 
 func (ht *HashTable) position(s string) int {

@@ -15,7 +15,7 @@ func TestHt(t *testing.T) {
 
 	// Test simple get
 	val, err := ht.Get("foo")
-	if err != nil && val == "bar" {
+	if err != nil || val != "bar" || ht.Size != 5 {
 		fmt.Println(val, err)
 		t.Error()
 	}
@@ -23,7 +23,7 @@ func TestHt(t *testing.T) {
 	ht.Put("peter", "bob")
 	// Test "peter" has been updated
 	val, err = ht.Get("peter")
-	if err != nil && val == "bob" {
+	if err != nil && val == "bob" || ht.Size != 5 {
 		fmt.Println(val, err)
 		t.Error()
 	}
@@ -31,7 +31,18 @@ func TestHt(t *testing.T) {
 	// Test delete
 	ht.Del("peter")
 	val, err = ht.Get("peter")
-	if val != "" || err == nil {
+	if val != "" || err == nil || ht.Size != 4 {
+		t.Error()
+	}
+
+	counter := 0
+	f := func(a *item) {
+		counter++
+	}
+
+	ht.ForEach(f)
+
+	if counter != 4 {
 		t.Error()
 	}
 }
