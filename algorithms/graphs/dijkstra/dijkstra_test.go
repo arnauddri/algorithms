@@ -7,23 +7,29 @@ import (
 )
 
 func TestDijkstra(t *testing.T) {
-	h := graph.NewDirected()
+	h := graph.NewUndirected()
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 4; i++ {
 		v := graph.VertexId(i)
 		h.AddVertex(v)
 	}
 
-	for i := 0; i < 9; i++ {
-		h.AddEdge(graph.VertexId(i), graph.VertexId(i+1), 20*i)
-	}
+	h.AddEdge(graph.VertexId(0), graph.VertexId(1), 10)
+	h.AddEdge(graph.VertexId(1), graph.VertexId(2), 20)
+	h.AddEdge(graph.VertexId(2), graph.VertexId(3), 40)
+	h.AddEdge(graph.VertexId(0), graph.VertexId(2), 50)
+	h.AddEdge(graph.VertexId(0), graph.VertexId(3), 80)
+	h.AddEdge(graph.VertexId(0), graph.VertexId(4), 10)
+	h.AddEdge(graph.VertexId(4), graph.VertexId(3), 10)
 
-	counter := 0
-	prev := ShortestPath(h, graph.VertexId(1))
-	fmt.Println(prev)
+	prev := ShortestPath(h, graph.VertexId(0))
 
-	if counter != 0 {
-		fmt.Println(counter)
+	if prev[1] != graph.VertexId(0) ||
+		prev[2] != graph.VertexId(1) ||
+		prev[3] != graph.VertexId(4) ||
+		prev[4] != graph.VertexId(0) {
+
+		fmt.Println(prev)
 		t.Error()
 	}
 }

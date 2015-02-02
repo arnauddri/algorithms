@@ -1,22 +1,23 @@
+// Dijkstra algorithm for undirected weighed graph
+// Pseudo-code: http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Using_a_priority_queue
 package dijkstra
 
 import (
-	"fmt"
 	"github.com/arnauddri/algorithms/data-structures/graph"
 	"github.com/arnauddri/algorithms/data-structures/priority-queue"
 )
 
-func ShortestPath(g *graph.DirGraph, source graph.VertexId) map[graph.VertexId]int {
+func ShortestPath(g *graph.UnGraph, source graph.VertexId) map[graph.VertexId]graph.VertexId {
 	visited := make(map[graph.VertexId]bool, g.VerticesCount())
 	dist := make(map[graph.VertexId]int)
 	prev := make(map[graph.VertexId]graph.VertexId)
-	Q := pq.New()
+	Q := pq.NewMin()
 	vertices := g.VerticesIter()
 
 	dist[source] = 0
 	for vertex := range vertices {
 		if source != vertex {
-			dist[vertex] = -1
+			dist[vertex] = 1000
 			prev[vertex] = 0
 		}
 		Q.Insert(*pq.NewItem(vertex, dist[vertex]))
@@ -26,19 +27,17 @@ func ShortestPath(g *graph.DirGraph, source graph.VertexId) map[graph.VertexId]i
 		u := Q.Extract().Value.(graph.VertexId)
 		visited[u] = true
 
-		for successor := range g.GetSuccessors(u).VerticesIter() {
-			if !visited[successor] {
-				alt := dist[u] + g.GetEdge(u, successor)
-				fmt.Println(u, dist[u], successor, alt, g.GetEdge(u, successor))
+		for neighbour := range g.GetNeighbours(u).VerticesIter() {
+			if !visited[neighbour] {
+				alt := dist[u] + g.GetEdge(u, neighbour)
 
-				if alt < dist[successor] || dist[successor] == -1 {
-					dist[successor] = alt
-					prev[successor] = u
-					fmt.Println("alt", successor, alt, dist)
-					Q.ChangePriority(successor, alt)
+				if alt < dist[neighbour] {
+					dist[neighbour] = alt
+					prev[neighbour] = u
+					Q.ChangePriority(neighbour, alt)
 				}
 			}
 		}
 	}
-	return dist
+	return prev
 }
