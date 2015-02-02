@@ -109,6 +109,10 @@ func (g *graph) AddEdge(from, to VertexId, weight int) error {
 		return errors.New("Cannot add self loop")
 	}
 
+	if !g.CheckVertex(from) || !g.CheckVertex(to) {
+		return errors.New("Vertices don't exist")
+	}
+
 	i, _ := g.edges[from][to]
 	j, _ := g.edges[to][from]
 
@@ -153,7 +157,7 @@ func (g *graph) IsEdge(from, to VertexId) bool {
 	connected, ok := g.edges[from]
 
 	if !ok {
-		panic("Vertex doesn't exit")
+		return false
 	}
 
 	weight := connected[to]

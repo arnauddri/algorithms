@@ -54,8 +54,13 @@ func (g *graph) GetSuccessors(vertex VertexId) VerticesIterable {
 
 func (g *DirGraph) Reverse() *DirGraph {
 	r := NewDirected()
-	edges := g.EdgesIter()
 
+	vertices := g.VerticesIter()
+	for vertex := range vertices {
+		r.AddVertex(vertex)
+	}
+
+	edges := g.EdgesIter()
 	for edge := range edges {
 		r.AddEdge(edge.To, edge.From, 1)
 	}

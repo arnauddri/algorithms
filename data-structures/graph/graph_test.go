@@ -79,7 +79,6 @@ func TestUndirectedGraph(t *testing.T) {
 	}
 
 	if g.EdgesCount() != countEdge {
-		//fmt.Println(countEdge, g.edges)
 		t.Error()
 	}
 
@@ -106,8 +105,7 @@ func TestDirectedGraph(t *testing.T) {
 	g := NewDirected()
 
 	for i := 0; i < 10; i++ {
-		v := VertexId(i)
-		g.AddVertex(v)
+		g.AddVertex(VertexId(i))
 	}
 
 	if len(g.edges) != 10 {
