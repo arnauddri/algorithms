@@ -18,3 +18,15 @@ func TestSelectionSort(t *testing.T) {
 		}
 	}
 }
+
+func benchmarkSelectionSort(n int, b *testing.B) {
+	list := utils.GetArrayOfSize(n)
+	for i := 0; i < b.N; i++ {
+		sort(list)
+	}
+}
+
+func BenchmarkSelectionSort100(b *testing.B)    { benchmarkSelectionSort(100, b) }
+func BenchmarkSelectionSort1000(b *testing.B)   { benchmarkSelectionSort(1000, b) }
+func BenchmarkSelectionSort10000(b *testing.B)  { benchmarkSelectionSort(10000, b) }
+func BenchmarkSelectionSort100000(b *testing.B) { benchmarkSelectionSort(100000, b) }

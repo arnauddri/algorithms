@@ -18,3 +18,15 @@ func TestInsertionSort(t *testing.T) {
 		}
 	}
 }
+
+func benchmarkInsertionSort(n int, b *testing.B) {
+	list := utils.GetArrayOfSize(n)
+	for i := 0; i < b.N; i++ {
+		sort(list)
+	}
+}
+
+func BenchmarkInsertionSort100(b *testing.B)    { benchmarkInsertionSort(100, b) }
+func BenchmarkInsertionSort1000(b *testing.B)   { benchmarkInsertionSort(1000, b) }
+func BenchmarkInsertionSort10000(b *testing.B)  { benchmarkInsertionSort(10000, b) }
+func BenchmarkInsertionSort100000(b *testing.B) { benchmarkInsertionSort(100000, b) }
