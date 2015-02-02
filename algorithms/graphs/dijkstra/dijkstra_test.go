@@ -9,9 +9,8 @@ import (
 func TestDijkstra(t *testing.T) {
 	h := graph.NewUndirected()
 
-	for i := 0; i < 4; i++ {
-		v := graph.VertexId(i)
-		h.AddVertex(v)
+	for i := 0; i < 5; i++ {
+		h.AddVertex(graph.VertexId(i))
 	}
 
 	h.AddEdge(graph.VertexId(0), graph.VertexId(1), 10)
