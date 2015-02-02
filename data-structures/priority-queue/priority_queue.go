@@ -1,7 +1,6 @@
 package pq
 
 import (
-	"fmt"
 	"github.com/arnauddri/algorithms/data-structures/heap"
 	"github.com/arnauddri/algorithms/data-structures/queue"
 )
@@ -26,9 +25,15 @@ type PQ struct {
 	data heap.Heap
 }
 
-func New() (q *PQ) {
+func NewMax() (q *PQ) {
 	return &PQ{
 		data: *heap.NewMax(),
+	}
+}
+
+func NewMin() (q *PQ) {
+	return &PQ{
+		data: *heap.NewMin(),
 	}
 }
 
@@ -50,7 +55,6 @@ func (pq *PQ) ChangePriority(val interface{}, priority int) {
 	popped := pq.Extract()
 
 	for val != popped.Value {
-		fmt.Println(val, popped.Value)
 		if pq.Len() == 0 {
 			panic("Item not found")
 		}
