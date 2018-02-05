@@ -105,8 +105,8 @@ func (t *Tree) Delete(i int) bool {
 			if h.Left != nil {
 				right := h.Right
 				h.Value = h.Left.Value
+				h.Right = h.Left.Right				
 				h.Left = h.Left.Left
-				h.Right = h.Left.Right
 
 				if right != nil {
 					subTree := &Tree{Head: h}
