@@ -15,6 +15,8 @@ Classic algorithms and data structures implemented in Go. Not for production use
 * [Priority Queue](https://github.com/arnauddri/algorithms/tree/master/data-structures/priority-queue) [(wiki)](http://en.wikipedia.org/wiki/Priority_queue)
 * [Queue](https://github.com/arnauddri/algorithms/tree/master/data-structures/queue) [(wiki)](http://en.wikipedia.org/wiki/Queue_%28abstract_data_type%29)
 * [Stack](https://github.com/arnauddri/algorithms/tree/master/data-structures/stack) [(wiki)](http://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29)
+* [Stack](https://github.com/DarioBalinzo/algorithms/tree/master/data-structures/treap) [(wiki)](https://en.wikipedia.org/wiki/Treap)
+
 
 #### Graph algorithms
 
