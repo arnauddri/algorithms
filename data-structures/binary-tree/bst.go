@@ -1,7 +1,5 @@
 package bst
 
-import ()
-
 type Node struct {
 	Value  int
 	Parent *Node
