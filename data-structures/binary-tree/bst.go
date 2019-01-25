@@ -1,7 +1,5 @@
 package bst
 
-import ()
-
 type Node struct {
 	Value  int
 	Parent *Node
@@ -103,10 +101,13 @@ func (t *Tree) Delete(i int) bool {
 			h = h.Right
 		case 0:
 			if h.Left != nil {
+				left := h.Left
 				right := h.Right
-				h.Value = h.Left.Value
-				h.Left = h.Left.Left
-				h.Right = h.Left.Right
+				h.Value = left.Value
+				h.Left = left.Left
+				// h.Left Reassigned
+				//h.Right = h.Left.Right
+				h.Right = left.Right
 
 				if right != nil {
 					subTree := &Tree{Head: h}
