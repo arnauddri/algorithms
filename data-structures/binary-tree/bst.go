@@ -157,3 +157,43 @@ func IterOnTree(n *Node, f func(*Node)) bool {
 
 	return IterOnTree(n.Right, f)
 }
+
+func (t *Tree) PreOrder(n *Node) []int {
+	var nodes []int
+
+	if n == nil {
+		return nodes
+	}
+
+	nodes = append(nodes, n.Value)
+	nodes = append(nodes, t.PreOrder(n.Left)...)
+	nodes = append(nodes, t.PreOrder(n.Right)...)
+	return nodes
+}
+
+func (t *Tree) InOrder(n *Node) []int {
+	var nodes []int
+
+	if n == nil {
+		return nodes
+	}
+
+	nodes = append(nodes, t.PostOrder(n.Left)...)
+	nodes = append(nodes, n.Value)
+	nodes = append(nodes, t.PostOrder(n.Right)...)
+	return nodes
+}
+
+func (t *Tree) PostOrder(n *Node) []int {
+	var nodes []int
+
+	if n == nil {
+		return nodes
+	}
+
+	nodes = append(nodes, t.PostOrder(n.Left)...)
+	nodes = append(nodes, t.PostOrder(n.Right)...)
+
+	nodes = append(nodes, n.Value)
+	return nodes
+}
