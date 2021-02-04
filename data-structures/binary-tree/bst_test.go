@@ -117,7 +117,7 @@ func TestTraversalAlgorithms_PostOrder(t *testing.T) {
 	for i, num := range actual {
 		if num != expected[i] {
 			if !reflect.DeepEqual(expected, actual) {
-				t.Errorf("InOrder() = %v, want %v", actual, expected)
+				t.Errorf("PostOrder() = %v, want %v", actual, expected)
 			}
 		}
 	}
