@@ -171,6 +171,20 @@ func PreOrder(n *Node) []int {
 	return nodes
 }
 
+func InOrder(n *Node) []*Node {
+	var nodes []*Node
+
+	if n == nil {
+		return nodes
+	}
+
+	nodes = append(nodes, PostOrder(n.Left)...)
+	nodes = append(nodes, n)
+	nodes = append(nodes, PostOrder(n.Right)...)
+	return nodes
+}
+
+
 func PostOrder(n *Node) []int {
 	var nodes []int
 
