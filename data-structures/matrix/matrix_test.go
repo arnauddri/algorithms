@@ -80,6 +80,25 @@ func TestSubstract(t *testing.T) {
 	}
 }
 
+func TestTranspose(t *testing.T) {
+	a := []float64{1, 2, 3, 4, 5, 6}
+	A := MakeMatrix(a, 2, 3)
+
+	B := Transpose(A)
+	expected := []float64{1, 4, 2, 5, 3, 6}
+	if !FloatArrayEquals(expected, B.Elements) {
+		t.Errorf("result = %v, want %v", B.Elements, expected)
+	}
+
+	a = []float64{1, 2, 3, 4}
+	A = MakeMatrix(a, 2, 2)
+	B = Transpose(A)
+	expected = []float64{1, 3, 2, 4}
+	if !FloatArrayEquals(expected, B.Elements) {
+		t.Errorf("result = %v, want %v", B.Elements, expected)
+	}
+}
+
 func TestScale(t *testing.T) {
 	a := []float64{1, 1, 1, 1}
 	A := MakeMatrix(a, 2, 2)

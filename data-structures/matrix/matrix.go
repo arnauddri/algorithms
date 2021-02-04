@@ -147,7 +147,7 @@ func Substract(A *Matrix, B *Matrix) *Matrix {
 }
 
 func Multiply(A *Matrix, B *Matrix) *Matrix {
-	result := MakeMatrix(make([]float64, A.cols*A.rows), A.cols, A.rows)
+	result := MakeMatrix(make([]float64, A.cols*A.rows), A.rows, A.cols)
 
 	for i := 0; i < A.rows; i++ {
 		for j := 0; j < A.cols; j++ {
@@ -156,6 +156,18 @@ func Multiply(A *Matrix, B *Matrix) *Matrix {
 				sum += A.GetElm(i, k) * B.GetElm(k, j)
 			}
 			result.SetElm(i, j, sum)
+		}
+	}
+
+	return result
+}
+
+func Transpose(A *Matrix) *Matrix {
+	result := MakeMatrix(make([]float64, A.cols*A.rows), A.cols, A.rows)
+
+	for i := 0; i < A.cols; i++ {
+		for j := 0; j < A.rows; j++ {
+			result.SetElm(i, j, A.GetElm(j, i))
 		}
 	}
 
