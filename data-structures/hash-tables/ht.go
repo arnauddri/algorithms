@@ -4,7 +4,7 @@
 package ht
 
 import (
-	list "algorithms2/data-structures/linked-list"
+	list "../linked-list"
 	"errors"
 	"math"
 )
