@@ -79,7 +79,7 @@ func (l *List) Add(value interface{}, index int) error {
 		return nil
 	}
 
-	if l.Len()-1 == index {
+	if l.Len() == index {
 		l.Append(value)
 		return nil
 	}
