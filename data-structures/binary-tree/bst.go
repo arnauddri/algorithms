@@ -193,6 +193,7 @@ func (t *Tree) PostOrder(n *Node) []int {
 
 	nodes = append(nodes, t.PostOrder(n.Left)...)
 	nodes = append(nodes, t.PostOrder(n.Right)...)
+
 	nodes = append(nodes, n.Value)
 	return nodes
 }
