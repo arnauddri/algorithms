@@ -4,8 +4,8 @@
 package ht
 
 import (
-	list "../linked-list"
 	"errors"
+	list "github.com/arnauddri/algorithms/data-structures/linked-list"
 	"math"
 )
 
