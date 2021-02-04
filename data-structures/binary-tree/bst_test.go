@@ -2,6 +2,7 @@ package bst
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -64,20 +65,48 @@ func TestTraversalAlgorithms_PreOrder(t *testing.T) {
 	tree.Insert(3)
 	tree.Insert(6)
 
-	expected1 := tree.PreOrder(tree.Search(1))[0]
-	expected2 := tree.PreOrder(tree.Search(1))[1]
-	expected3 := tree.PreOrder(tree.Search(1))[2]
-	expected4 := tree.PreOrder(tree.Search(1))[3]
-	expected5 := tree.PreOrder(tree.Search(1))[4]
-	expected6 := tree.PreOrder(tree.Search(1))[5]
+	actual := tree.PreOrder(n)
+	expected := [...]int{1, 4, 2, 3, 5, 6}
 
-	if expected1 != 1 ||
-		expected2 != 4 ||
-		expected3 != 2 ||
-		expected4 != 3 ||
-		expected5 != 5 ||
-		expected6 != 6 {
-		fmt.Println(tree.PreOrder(tree.Search(1))[0])
-		t.Error()
+	if !reflect.DeepEqual(expected, actual) {
+		t.Errorf("PreOrder() = %v, want %v", actual, expected)
+	}
+}
+
+func TestTraversalAlgorithms_InOrder(t *testing.T) {
+	n := NewNode(1)
+
+	tree := NewTree(n)
+
+	tree.Insert(4)
+	tree.Insert(2)
+	tree.Insert(5)
+	tree.Insert(3)
+	tree.Insert(6)
+
+	actual := tree.InOrder(n)
+	expected := [...]int{1, 3, 2, 6, 5, 4}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Errorf("InOrder() = %v, want %v", actual, expected)
+	}
+}
+
+func TestTraversalAlgorithms_PostOrder(t *testing.T) {
+	n := NewNode(1)
+
+	tree := NewTree(n)
+
+	tree.Insert(4)
+	tree.Insert(2)
+	tree.Insert(5)
+	tree.Insert(3)
+	tree.Insert(6)
+
+	actual := tree.PostOrder(n)
+	expected := [...]int{3, 2, 6, 5, 4, 1}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Errorf("PostOrder() = %v, want %v", actual, expected)
 	}
 }
