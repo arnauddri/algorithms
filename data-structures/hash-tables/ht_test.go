@@ -55,3 +55,32 @@ func TestHash(t *testing.T) {
 		t.Error()
 	}
 }
+
+func TestHashTable_Resize(t *testing.T) {
+	ht := New(1000)
+	ht.Put("foo", "bar")
+	ht.Put("fiz", "buzz")
+	ht.Put("bruce", "wayne")
+	ht.Put("peter", "parker")
+	ht.Put("clark", "kent")
+
+	actual := ht.Resize(10)
+
+	if actual != nil {
+		t.Errorf("resul = %v, want nil", actual)
+	}
+
+	actual = ht.Resize(10)
+	expected := "current capacity is as same the input number"
+
+	if actual.Error() != expected {
+		t.Errorf("resul = %v, want %v", actual, expected)
+	}
+
+	actual = ht.Resize(4)
+	expected = "there is not enough capacity to hold items. please enter a larger number"
+
+	if actual.Error() != expected {
+		t.Errorf("resul = %v, want %v", actual, expected)
+	}
+}
