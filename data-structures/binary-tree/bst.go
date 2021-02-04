@@ -133,7 +133,7 @@ func (t *Tree) Delete(i int) bool {
 				return true
 			}
 
-			if parent.Left == n {
+			if parent.Left == h {
 				parent.Left = nil
 			} else {
 				parent.Right = nil
