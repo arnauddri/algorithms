@@ -52,3 +52,32 @@ func TestTree(t *testing.T) {
 		t.Error()
 	}
 }
+
+func TestTraversalAlgorithms_PreOrder(t *testing.T) {
+	n := NewNode(1)
+
+	tree := NewTree(n)
+
+	tree.Insert(4)
+	tree.Insert(2)
+	tree.Insert(5)
+	tree.Insert(3)
+	tree.Insert(6)
+
+	expected1 := tree.PreOrder(tree.Search(1))[0]
+	expected2 := tree.PreOrder(tree.Search(1))[1]
+	expected3 := tree.PreOrder(tree.Search(1))[2]
+	expected4 := tree.PreOrder(tree.Search(1))[3]
+	expected5 := tree.PreOrder(tree.Search(1))[4]
+	expected6 := tree.PreOrder(tree.Search(1))[5]
+
+	if expected1 != 1 ||
+		expected2 != 4 ||
+		expected3 != 2 ||
+		expected4 != 3 ||
+		expected5 != 5 ||
+		expected6 != 6 {
+		fmt.Println(tree.PreOrder(tree.Search(1))[0])
+		t.Error()
+	}
+}

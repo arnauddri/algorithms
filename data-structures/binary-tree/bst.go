@@ -158,7 +158,7 @@ func IterOnTree(n *Node, f func(*Node)) bool {
 	return IterOnTree(n.Right, f)
 }
 
-func PreOrder(n *Node) []int {
+func (t *Tree) PreOrder(n *Node) []int {
 	var nodes []int
 
 	if n == nil {
@@ -166,33 +166,33 @@ func PreOrder(n *Node) []int {
 	}
 
 	nodes = append(nodes, n.Value)
-	nodes = append(nodes, PreOrder(n.Left)...)
-	nodes = append(nodes, PreOrder(n.Right)...)
+	nodes = append(nodes, t.PreOrder(n.Left)...)
+	nodes = append(nodes, t.PreOrder(n.Right)...)
 	return nodes
 }
 
-func InOrder(n *Node) []int {
+func (t *Tree) InOrder(n *Node) []int {
 	var nodes []int
 
 	if n == nil {
 		return nodes
 	}
 
-	nodes = append(nodes, PostOrder(n.Left)...)
+	nodes = append(nodes, t.PostOrder(n.Left)...)
 	nodes = append(nodes, n.Value)
-	nodes = append(nodes, PostOrder(n.Right)...)
+	nodes = append(nodes, t.PostOrder(n.Right)...)
 	return nodes
 }
 
-func PostOrder(n *Node) []int {
+func (t *Tree) PostOrder(n *Node) []int {
 	var nodes []int
 
 	if n == nil {
 		return nodes
 	}
 
-	nodes = append(nodes, PostOrder(n.Left)...)
-	nodes = append(nodes, PostOrder(n.Right)...)
+	nodes = append(nodes, t.PostOrder(n.Left)...)
+	nodes = append(nodes, t.PostOrder(n.Right)...)
 	nodes = append(nodes, n.Value)
 	return nodes
 }
