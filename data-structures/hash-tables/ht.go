@@ -4,6 +4,7 @@
 package ht
 
 import (
+	list "algorithms-3/data-structures/linked-list"
 	"errors"
 	"github.com/arnauddri/algorithms/data-structures/linked-list"
 	"math"
@@ -114,4 +115,18 @@ func hashCode(s string) int {
 		hash &= hash
 	}
 	return int(math.Abs(float64(hash)))
+}
+
+// Resizes table to desired capacity. ( if Possible )
+func (ht *HashTable) Resize(newCap int) error {
+	size := ht.Size
+	if ht.Capacity == newCap {
+		return errors.New("current capacity is as same the input number")
+	}
+	if newCap >= size {
+		ht.Capacity = newCap
+	} else {
+		return errors.New("there is not enough capacity to hold items. please enter a larger number")
+	}
+	return nil
 }
