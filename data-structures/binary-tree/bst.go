@@ -178,8 +178,8 @@ func PostOrder(n *Node) []*Node {
 		return nodes
 	}
 
-	nodes = append(nodes, PreOrder(n.Left)...)
-	nodes = append(nodes, PreOrder(n.Right)...)
+	nodes = append(nodes, PostOrder(n.Left)...)
+	nodes = append(nodes, PostOrder(n.Right)...)
 	nodes = append(nodes, n)
 	return nodes
 }
