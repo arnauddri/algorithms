@@ -103,3 +103,34 @@ func FloatArrayEquals(a []float64, b []float64) bool {
 	}
 	return true
 }
+
+func TestAddWrongSizes(t *testing.T) {
+	A := MakeMatrix([]float64{1, 2, 3, 4, 5, 6}, 2, 3)
+	B := MakeMatrix([]float64{1, 2, 3, 4, 5, 6}, 3, 2)
+	C := MakeMatrix([]float64{1, 2, 3}, 1, 3)
+	if A.add(C) == nil || A.substract(C) == nil {
+		t.Error("expected error for mismatched rows")
+	}
+	if A.add(B) == nil || A.substract(B) == nil {
+		t.Error("expected error for mismatched shapes")
+	}
+}
+
+func TestMultiply(t *testing.T) {
+	A := MakeMatrix([]float64{1, 2, 3, 4, 5, 6}, 2, 3)
+	B := MakeMatrix([]float64{7, 8, 9, 10, 11, 12}, 3, 2)
+	C := Multiply(A, B)
+	if C.CountRows() != 2 || C.CountCols() != 2 ||
+		!FloatArrayEquals(C.Elements, []float64{58, 64, 139, 154}) {
+		t.Errorf("Multiply() = %v (%dx%d)", C.Elements, C.CountRows(), C.CountCols())
+	}
+}
+
+func TestTranspose(t *testing.T) {
+	A := MakeMatrix([]float64{1, 2, 3, 4, 5, 6}, 2, 3)
+	B := Transpose(A)
+	if B.CountRows() != 3 || B.CountCols() != 2 ||
+		!FloatArrayEquals(B.Elements, []float64{1, 4, 2, 5, 3, 6}) {
+		t.Errorf("Transpose() = %v", B.Elements)
+	}
+}

@@ -89,7 +89,7 @@ func (A *Matrix) trace() float64 {
 }
 
 func (A *Matrix) add(B *Matrix) error {
-	if A.cols != B.cols && A.rows != B.rows {
+	if A.cols != B.cols || A.rows != B.rows {
 		return errors.New("Wrong input sizes")
 	}
 	for i := 0; i < A.rows; i++ {
@@ -102,7 +102,7 @@ func (A *Matrix) add(B *Matrix) error {
 }
 
 func (A *Matrix) substract(B *Matrix) error {
-	if A.cols != B.cols && A.rows != B.rows {
+	if A.cols != B.cols || A.rows != B.rows {
 		return errors.New("Wrong input sizes")
 	}
 	for i := 0; i < A.rows; i++ {
@@ -123,7 +123,7 @@ func (A *Matrix) scale(a float64) {
 }
 
 func Add(A *Matrix, B *Matrix) *Matrix {
-	result := MakeMatrix(make([]float64, A.cols*A.rows), A.cols, A.rows)
+	result := MakeMatrix(make([]float64, A.cols*A.rows), A.rows, A.cols)
 
 	for i := 0; i < A.rows; i++ {
 		for j := 0; j < A.cols; j++ {
@@ -135,7 +135,7 @@ func Add(A *Matrix, B *Matrix) *Matrix {
 }
 
 func Substract(A *Matrix, B *Matrix) *Matrix {
-	result := MakeMatrix(make([]float64, A.cols*A.rows), A.cols, A.rows)
+	result := MakeMatrix(make([]float64, A.cols*A.rows), A.rows, A.cols)
 
 	for i := 0; i < A.rows; i++ {
 		for j := 0; j < A.cols; j++ {
@@ -147,15 +147,27 @@ func Substract(A *Matrix, B *Matrix) *Matrix {
 }
 
 func Multiply(A *Matrix, B *Matrix) *Matrix {
-	result := MakeMatrix(make([]float64, A.cols*A.rows), A.cols, A.rows)
+	result := MakeMatrix(make([]float64, A.rows*B.cols), A.rows, B.cols)
 
 	for i := 0; i < A.rows; i++ {
-		for j := 0; j < A.cols; j++ {
+		for j := 0; j < B.cols; j++ {
 			sum := float64(0)
 			for k := 0; k < A.cols; k++ {
 				sum += A.GetElm(i, k) * B.GetElm(k, j)
 			}
 			result.SetElm(i, j, sum)
+		}
+	}
+
+	return result
+}
+
+func Transpose(A *Matrix) *Matrix {
+	result := MakeMatrix(make([]float64, A.cols*A.rows), A.cols, A.rows)
+
+	for i := 0; i < A.cols; i++ {
+		for j := 0; j < A.rows; j++ {
+			result.SetElm(i, j, A.GetElm(j, i))
 		}
 	}
 

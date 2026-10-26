@@ -58,3 +58,15 @@ func TestMaxHeap(t *testing.T) {
 		}
 	}
 }
+
+func TestHeapInvariant(t *testing.T) {
+	h := NewMax()
+	for i := 1; i <= 20; i++ {
+		h.Insert(Int(i))
+		for c := 1; c < h.Len(); c++ {
+			if h.Less(h.Get(c), h.Get((c-1)/2)) {
+				t.Fatalf("heap property broken at index %d: %v", c, h.data)
+			}
+		}
+	}
+}

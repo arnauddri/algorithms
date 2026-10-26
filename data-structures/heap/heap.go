@@ -78,7 +78,7 @@ func (h *Heap) Extract() (el Item) {
 
 func (h *Heap) siftUp() {
 	for i, parent := h.Len()-1, h.Len()-1; i > 0; i = parent {
-		parent = i >> 1
+		parent = (i - 1) >> 1
 		if h.Less(h.Get(i), h.Get(parent)) {
 			h.data[parent], h.data[i] = h.data[i], h.data[parent]
 		} else {

@@ -114,3 +114,21 @@ func TestLinkedList(t *testing.T) {
 func slice(args ...interface{}) []interface{} {
 	return args
 }
+
+func TestAddAtEnd(t *testing.T) {
+	l := NewList()
+	l.Append(1)
+	l.Append(2)
+	l.Append(3)
+
+	l.Add(4, 3)
+	if l.Tail.Value != 4 || l.Len() != 4 {
+		t.Errorf("Add at index Len() should append, tail = %v", l.Tail.Value)
+	}
+
+	l.Add(9, 3)
+	n, _ := l.Get(3)
+	if n.Value != 9 || l.Tail.Value != 4 {
+		t.Errorf("Add at index Len()-1 should insert before tail, got %v, tail %v", n.Value, l.Tail.Value)
+	}
+}

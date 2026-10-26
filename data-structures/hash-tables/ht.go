@@ -37,6 +37,10 @@ func (ht *HashTable) Get(key string) (interface{}, error) {
 }
 
 func (ht *HashTable) Put(key, value string) {
+	ht.put(key, value)
+}
+
+func (ht *HashTable) put(key string, value interface{}) {
 	index := ht.position(key)
 
 	if ht.Table[index] == nil {
@@ -114,4 +118,22 @@ func hashCode(s string) int {
 		hash &= hash
 	}
 	return int(math.Abs(float64(hash)))
+}
+
+// Resize rehashes every item into a table of capacity newCap
+func (ht *HashTable) Resize(newCap int) error {
+	if newCap <= 0 {
+		return errors.New("Capacity must be positive")
+	}
+	old := ht.Table
+	ht.Table = make(map[int]*list.List, newCap)
+	ht.Capacity = newCap
+	ht.Size = 0
+	for _, l := range old {
+		l.Each(func(node list.Node) {
+			it := node.Value.(*item)
+			ht.put(it.key, it.value)
+		})
+	}
+	return nil
 }
