@@ -55,3 +55,29 @@ func TestHash(t *testing.T) {
 		t.Error()
 	}
 }
+
+func TestResize(t *testing.T) {
+	ht := New(4)
+	keys := []string{"foo", "fiz", "bruce", "peter", "clark", "diana", "barry"}
+	for _, k := range keys {
+		ht.Put(k, k+"-value")
+	}
+
+	for _, newCap := range []int{2, 1000, 7} {
+		if err := ht.Resize(newCap); err != nil {
+			t.Fatal(err)
+		}
+		if ht.Capacity != newCap || ht.Size != len(keys) {
+			t.Errorf("Resize(%d): Capacity = %d, Size = %d", newCap, ht.Capacity, ht.Size)
+		}
+		for _, k := range keys {
+			if v, err := ht.Get(k); err != nil || v != k+"-value" {
+				t.Errorf("Resize(%d): Get(%q) = %v, %v", newCap, k, v, err)
+			}
+		}
+	}
+
+	if ht.Resize(0) == nil {
+		t.Error("Resize(0) should fail")
+	}
+}
