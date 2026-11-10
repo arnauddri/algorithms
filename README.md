@@ -15,8 +15,7 @@ Classic algorithms and data structures implemented in Go. Not for production use
 * [Priority Queue](https://github.com/arnauddri/algorithms/tree/master/data-structures/priority-queue) [(wiki)](http://en.wikipedia.org/wiki/Priority_queue)
 * [Queue](https://github.com/arnauddri/algorithms/tree/master/data-structures/queue) [(wiki)](http://en.wikipedia.org/wiki/Queue_%28abstract_data_type%29)
 * [Stack](https://github.com/arnauddri/algorithms/tree/master/data-structures/stack) [(wiki)](http://en.wikipedia.org/wiki/Stack_%28abstract_data_type%29)
-* [Treap](https://github.com/DarioBalinzo/algorithms/tree/master/data-structures/treap) [(wiki)](https://en.wikipedia.org/wiki/Treap)
-
+* [Treap](https://github.com/arnauddri/algorithms/tree/master/data-structures/treap) [(wiki)](https://en.wikipedia.org/wiki/Treap)
 
 #### Graph algorithms
 
@@ -28,6 +27,7 @@ Classic algorithms and data structures implemented in Go. Not for production use
 **Shortest path:**
 * [Breadth First Search Shortest Path](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/bfs-shortest-path) [(wiki)](http://en.wikipedia.org/wiki/Breadth-first_search)
 * [Dijkstra](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/dijkstra) [(wiki)](http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+* [Yen's K-Shortest Paths](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/yen) [(wiki)](https://en.wikipedia.org/wiki/Yen%27s_algorithm)
 
 **Sorting:**
 * [Topological Sort](https://github.com/arnauddri/algorithms/tree/master/algorithms/graphs/topological-sort) [(wiki)](http://en.wikipedia.org/wiki/Topological_sorting)
