@@ -16,7 +16,7 @@ func getAllPrimesTo(n int) (primes []int) {
 		}
 	}
 
-	for i := 1; i < n; i++ {
+	for i := 2; i < n; i++ {
 		if !checked[i] {
 			primes = append(primes, i)
 		}

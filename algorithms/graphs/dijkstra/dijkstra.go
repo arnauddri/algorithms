@@ -3,6 +3,8 @@
 package dijkstra
 
 import (
+	"math"
+
 	"github.com/arnauddri/algorithms/data-structures/graph"
 	"github.com/arnauddri/algorithms/data-structures/priority-queue"
 )
@@ -17,7 +19,7 @@ func ShortestPath(g *graph.UnGraph, source graph.VertexId) map[graph.VertexId]gr
 	dist[source] = 0
 	for vertex := range vertices {
 		if source != vertex {
-			dist[vertex] = 1000
+			dist[vertex] = math.MaxInt
 			prev[vertex] = 0
 		}
 		Q.Insert(*pq.NewItem(vertex, dist[vertex]))
@@ -25,6 +27,9 @@ func ShortestPath(g *graph.UnGraph, source graph.VertexId) map[graph.VertexId]gr
 
 	for Q.Len() > 0 {
 		u := Q.Extract().Value.(graph.VertexId)
+		if dist[u] == math.MaxInt {
+			break // remaining vertices are unreachable
+		}
 		visited[u] = true
 
 		for neighbour := range g.GetNeighbours(u).VerticesIter() {

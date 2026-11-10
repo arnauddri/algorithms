@@ -1,13 +1,11 @@
 package kosaraju
 
 import (
-	"fmt"
-	"github.com/arnauddri/algorithms/algorithms/graphs/dfs"
 	"github.com/arnauddri/algorithms/data-structures/graph"
 	"testing"
 )
 
-func TestTopologicalSort(t *testing.T) {
+func TestScc(t *testing.T) {
 	h := graph.NewDirected()
 	addEdge := func(h *graph.DirGraph, i, j int) {
 		h.AddEdge(graph.VertexId(i), graph.VertexId(j), 1)
@@ -33,11 +31,14 @@ func TestTopologicalSort(t *testing.T) {
 	addEdge(h, 2, 5)
 	addEdge(h, 8, 2)
 
-	dfs.DirectedDfs(h, graph.VertexId(9), func(v graph.VertexId) {
-		//fmt.Println(v)
-	})
-
-	s := Scc(h)
-	fmt.Println(s)
-
+	// Three cycles of three vertices: {1,7,4}, {9,6,3}, {8,5,2}.
+	sccs := Scc(h)
+	if len(sccs) != 3 {
+		t.Fatalf("expected 3 SCCs, got %d", len(sccs))
+	}
+	for _, scc := range sccs {
+		if scc.Len() != 3 {
+			t.Errorf("expected an SCC of 3 vertices, got %d", scc.Len())
+		}
+	}
 }
